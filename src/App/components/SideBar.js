@@ -42,19 +42,6 @@ function SideBar({ user, channels }) {
       <h4>Channels</h4>
         {user && getChannels(channels)}
         </NavItem>
-        <NavItem>
-          <NavLink href="#">Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Another Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink disabled href="#">Disabled Link</NavLink>
-        </NavItem>
-
       </Nav>
       <hr />
       <div className ="usersSideNav"></div>
