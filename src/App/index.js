@@ -1,22 +1,32 @@
-import React from 'react';
-import getDirectMessages from '../helpers/data/directMessageData';
+import React, { useEffect, useState } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import SideBar from './components/SideBar';
 import './App.scss';
 
 function App() {
-  const handleClick = () => {
-    getDirectMessages().then((response) => console.warn(response));
-  };
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((authed) => {
+      if (authed) {
+        const userInfoObj = {
+          fullName: authed.displayName,
+          profilePicture: authed.photoURL,
+          uid: authed.uid,
+          email: authed.email.split('@')[0]
+        };
+        setUser(userInfoObj);
+      } else if (user || user === null) {
+        setUser(false);
+      }
+    });
+  }, []);
 
   return (
-    <div className='App'>
-        <button
-          id='that-button'
-          className='btn btn-primary mt-3'
-          onClick={handleClick}
-        >
-          I am THAT button
-        </button>
-    </div>
+  <>
+    <SideBar user={user}/>
+  </>
   );
 }
 
