@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import SideBar from './components/SideBar';
 import './App.scss';
+import DirectMessage from '../views/DirectMessage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -26,6 +27,7 @@ function App() {
   return (
   <>
     <SideBar user={user}/>
+    <DirectMessage/>
   </>
   );
 }

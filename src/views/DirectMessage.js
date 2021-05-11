@@ -1,16 +1,22 @@
-// import React from 'react';
-// import getDirectMessages from '../helpers/data/directMessageData';
+import React, { useState, useEffect } from 'react';
+import getDirectMessages from '../helpers/data/directMessageData';
 
-// function DirectMessage() {
-//   const printMessage = () => {
-//     getDirectMessages().then((response) => console.warn(response));
-//   };
+function DirectMessage() {
+  const [directMessages, setDirectMessages] = useState({});
 
-//   return (
-//     <div>
+  useEffect(() => {
+    getDirectMessages().then((response) => {
+      console.warn(response);
+      setDirectMessages(response);
+      console.warn('dm', directMessages);
+    });
+  }, []);
 
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      <p>Hello</p>
+    </div>
+  );
+}
 
-// export default DirectMessage;
+export default DirectMessage;
