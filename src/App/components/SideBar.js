@@ -1,31 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import {
-  Nav,
-  NavItem,
-  NavLink,
-  Button
+  Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
+import NavBar from './NavBar';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
-function SideBar({ user }) {
+const getChannels = (channels) => (
+  <>
+    {
+     channels.map((channelInfo, key) => (
+       <NavItem key={key}>
+         <NavLink >{channelInfo.channelName}</NavLink>
+       </NavItem>
+     ))}
+  </>
+);
+
+function SideBar({ user, channels }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <div>
-      <p>List Based</p>
-      <Nav vertical>
-        <NavItem>
-          <NavLink href="#">Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Another Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink disabled href="#">Disabled Link</NavLink>
-        </NavItem>
+    <>
+    <div><NavBar></NavBar></div>
+    <div className ="channelsSideNav">
+      <Nav vertical >
+        <NavbarToggler onClick={toggle} />
         <NavItem>
         {
           user !== null
@@ -37,19 +38,27 @@ function SideBar({ user }) {
             }
           </div>
         }
+      <h4>Channels</h4>
         </NavItem>
+        {user && getChannels(channels)}
       </Nav>
       <hr />
-      <p>Link based</p>
+      <div className ="usersSideNav"></div>
+      <h4>Names of Users</h4>
       <Nav vertical>
-        <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink> <NavLink disabled href="#">Disabled Link</NavLink>
+        <NavLink >Link</NavLink>
+        <NavLink >Link</NavLink>
+        <NavLink >Another Link</NavLink>
+        <NavLink >Disabled Link</NavLink>
       </Nav>
     </div>
+  </>
   );
 }
 
 SideBar.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  channels: PropTypes.array
 };
 
 export default SideBar;
