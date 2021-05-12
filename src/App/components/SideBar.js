@@ -20,11 +20,24 @@ const getChannels = (channels) => (
          <NavLink >{channelInfo.channelName}</NavLink>
          <Button color="danger" onClick={handleClick}> Delete Channel </Button>
        </NavItem>
-     ))}
+     ))
+    }
   </>
 );
 
-function SideBar({ user, channels }) {
+const getUsers = (usersArray) => (
+  <>
+    {
+      usersArray.map((user) => (
+        <NavItem key={user.uid}>
+          <NavLink >{user.fullName}</NavLink>
+        </NavItem>
+      ))
+    }
+  </>
+);
+
+function SideBar({ user, channels, usersArray }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -53,10 +66,7 @@ function SideBar({ user, channels }) {
       <div className ="usersSideNav"></div>
       <h4>Names of Users</h4>
       <Nav vertical>
-        <NavLink >Link</NavLink>
-        <NavLink >Link</NavLink>
-        <NavLink >Another Link</NavLink>
-        <NavLink >Disabled Link</NavLink>
+         {user && getUsers(usersArray)}
       </Nav>
     </div>
   </>
@@ -65,7 +75,8 @@ function SideBar({ user, channels }) {
 
 SideBar.propTypes = {
   user: PropTypes.any,
-  channels: PropTypes.array
+  channels: PropTypes.array,
+  usersArray: PropTypes.array
 };
 
 export default SideBar;
