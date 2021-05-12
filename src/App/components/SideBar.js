@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
-// import NavBar from './NavBar';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
 const getChannels = (channels) => (
