@@ -3,9 +3,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import SideBar from './components/SideBar';
 import './App.scss';
-import DirectMessage from '../views/DirectMessage';
 import getChannels from '../helpers/data/channelsData';
-// import NavBar from './components/NavBar';
+import NavBar from './components/NavBar';
 
 function App() {
   const [user, setUser] = useState(null);

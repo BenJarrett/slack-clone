@@ -14,4 +14,15 @@ const getDirectMessages = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export default getDirectMessages;
+const createDirectMessage = (dmObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/directMessages.json`, dmObj)
+    .then((response) => {
+      const body = { directMessageID: response.data.name };
+      axios.patch(`${dbUrl}/directMessages/${response.data.name}.json`, body)
+        .then(() => {
+          getDirectMessages().then((directMessage) => resolve(directMessage));
+        }).catch((error) => reject(error));
+    });
+});
+
+export { getDirectMessages, createDirectMessage };
