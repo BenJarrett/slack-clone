@@ -4,9 +4,12 @@ import 'firebase/auth';
 import SideBar from './components/SideBar';
 import './App.scss';
 import DirectMessage from '../views/DirectMessage';
+import getChannels from '../helpers/data/channelsData';
+// import NavBar from './components/NavBar';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [channels, setChannels] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -18,16 +21,24 @@ function App() {
           email: authed.email.split('@')[0]
         };
         setUser(userInfoObj);
+        setChannels(channels);
+        if (authed !== null) {
+          getChannels().then((resp) => setChannels(resp));
+        }
       } else if (user || user === null) {
         setUser(false);
       }
     });
   }, []);
 
+  // debugger;
   return (
   <>
-    <SideBar user={user}/>
-    <DirectMessage/>
+    {/* <NavBar user={user} /> */}
+    <SideBar
+      user={user}
+      channels={channels}
+    />
   </>
   );
 }
