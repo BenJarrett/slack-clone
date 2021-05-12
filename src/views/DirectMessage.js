@@ -1,30 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import getDirectMessages from '../helpers/data/directMessageData';
-import getDirectMessageUsers from '../helpers/data/userData';
+import React from 'react';
+import PropTypes from 'prop-types';
+import DirectMessageForm from '../App/components/DirectMessageForm';
 
-function DirectMessage() {
-  const [directMessages, setDirectMessages] = useState({});
-  const [directMessageUsers, setDirectMessageUsers] = useState({});
-
-  useEffect(() => {
-    getDirectMessages().then((response) => {
-      console.warn(response);
-      setDirectMessages(response);
-      console.warn('dm', directMessages);
-    });
-
-    getDirectMessageUsers().then((response) => {
-      console.warn(response);
-      setDirectMessageUsers(response);
-      console.warn('dmu', directMessageUsers);
-    });
-  }, []);
-
+function DirectMessage({ user, usersArray }) {
   return (
     <div>
-      <p>Hello</p>
+      <h1>Direct Message</h1>
+      <DirectMessageForm
+      user={user}
+      formTitle='Find a teammate'
+      UsersArray={usersArray}
+      />
     </div>
   );
 }
+
+DirectMessage.propTypes = {
+  user: PropTypes.any,
+  usersArray: PropTypes.array
+};
 
 export default DirectMessage;

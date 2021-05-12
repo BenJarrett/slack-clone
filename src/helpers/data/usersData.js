@@ -9,4 +9,15 @@ const getUsers = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// const getDirectMessageUsers = () => new Promise((resolve, reject) => {
+//   axios(`${dbURL}/directMessageUsers.json`)
+//     .then((response) => {
+//       if (response.data) {
+//         resolve(Object.values(response.data));
+//       } else {
+//         resolve([]);
+//       }
+//     }).catch((error) => reject(error));
+// });
+
 export default getUsers;

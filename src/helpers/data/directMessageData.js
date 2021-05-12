@@ -3,7 +3,7 @@ import firebaseConfig from '../apiKeys';
 
 const dbUrl = firebaseConfig.databaseURL;
 
-const getDirectMessages = () => new Promise((resolve, reject) => {
+const getConversations = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/directMessages.json`)
     .then((response) => {
       if (response.data) {
@@ -14,15 +14,15 @@ const getDirectMessages = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const createDirectMessage = (dmObj) => new Promise((resolve, reject) => {
+const createConversation = (dmObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/directMessages.json`, dmObj)
     .then((response) => {
       const body = { directMessageID: response.data.name };
       axios.patch(`${dbUrl}/directMessages/${response.data.name}.json`, body)
         .then(() => {
-          getDirectMessages().then((directMessage) => resolve(directMessage));
+          getConversations().then((directMessage) => resolve(directMessage));
         }).catch((error) => reject(error));
     });
 });
 
-export { getDirectMessages, createDirectMessage };
+export { getConversations, createConversation };

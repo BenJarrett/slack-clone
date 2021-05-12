@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
@@ -57,6 +58,9 @@ function SideBar({ user, channels, usersArray }) {
       </Nav>
       <hr />
       <div className ="usersSideNav"></div>
+      <NavItem>
+        <Link className="nav-link" to="/direct-messages">Add Direct Message</Link>
+      </NavItem>
       <h4>Names of Users</h4>
       <Nav vertical>
          {user && getUsers(usersArray)}
