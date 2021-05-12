@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Col, Container, Row } from 'reactstrap';
 import SideBar from './components/SideBar';
-import './App.scss';
 import getChannels from '../helpers/data/channelsData';
 import getUsers from '../helpers/data/usersData';
 import MessagesView from '../views/MessagesView';
