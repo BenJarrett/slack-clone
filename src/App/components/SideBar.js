@@ -6,12 +6,19 @@ import {
 import NavBar from './NavBar';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
+const handleClick = () => {
+
+}
 const getChannels = (channels) => (
   <>
+
     {
      channels.map((channelInfo, key) => (
-       <NavItem key={key}>
+       <NavItem key={key}
+       firebaseKey={channelInfo.channelId}
+       >
          <NavLink >{channelInfo.channelName}</NavLink>
+         <Button color="danger" onClick={handleClick}> Delete Channel </Button>
        </NavItem>
      ))}
   </>

@@ -9,4 +9,5 @@ const getChannels = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// const deleteChannel = ()
 export default getChannels;
