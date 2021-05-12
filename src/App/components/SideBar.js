@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
@@ -12,7 +11,7 @@ const getChannels = (channels) => (
     {
      channels.map((channelInfo, key) => (
        <NavItem key={key}>
-         <NavLink href="#" >{channelInfo.channelName}</NavLink>
+         <NavLink >{channelInfo.channelName}</NavLink>
        </NavItem>
      ))}
   </>
@@ -40,14 +39,17 @@ function SideBar({ user, channels }) {
           </div>
         }
       <h4>Channels</h4>
-        {user && getChannels(channels)}
         </NavItem>
+        {user && getChannels(channels)}
       </Nav>
       <hr />
       <div className ="usersSideNav"></div>
       <h4>Names of Users</h4>
       <Nav vertical>
-        <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink> <NavLink disabled href="#">Disabled Link</NavLink>
+        <NavLink >Link</NavLink>
+        <NavLink >Link</NavLink>
+        <NavLink >Another Link</NavLink>
+        <NavLink >Disabled Link</NavLink>
       </Nav>
     </div>
   </>
