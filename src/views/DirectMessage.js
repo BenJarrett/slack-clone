@@ -9,7 +9,7 @@ function DirectMessage({ user, usersArray }) {
       <DirectMessageForm
       user={user}
       formTitle='Find a teammate'
-      UsersArray={usersArray}
+      usersArray={usersArray}
       />
     </div>
   );
@@ -17,7 +17,7 @@ function DirectMessage({ user, usersArray }) {
 
 DirectMessage.propTypes = {
   user: PropTypes.any,
-  usersArray: PropTypes.array
+  usersArray: PropTypes.array.isRequired
 };
 
 export default DirectMessage;

@@ -20,7 +20,7 @@ function Routes({ user, usersArray }) {
 
 Routes.propTypes = {
   user: PropTypes.any,
-  usersArray: PropTypes.array
+  usersArray: PropTypes.array.isRequired
 };
 
 export default Routes;
