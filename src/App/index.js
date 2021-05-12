@@ -55,8 +55,6 @@ function App() {
         />
       </Col>
     </Row>
-      {/* <div className='messagesContainer'>
-      </div> */}
 
     </Container>
   </>
