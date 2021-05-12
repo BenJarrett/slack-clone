@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import './App.scss';
 import getChannels from '../helpers/data/channelsData';
-import getUsers from '../helpers/data/usersData';
+import { getUsers } from '../helpers/data/usersData';
+import Routes from '../helpers/data/Routes';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,11 +37,18 @@ function App() {
 
   return (
   <>
-    <SideBar
-      user={user}
-      channels={channels}
-      usersArray={usersArray}
-    />
+    <Router>
+      <SideBar
+        user={user}
+        channels={channels}
+        usersArray={usersArray}
+      />
+      <Routes
+        user={user}
+        channels={channels}
+        usersArray={usersArray}
+      />
+    </Router>
   </>
   );
 }
