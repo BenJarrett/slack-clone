@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import getMessages from '../../helpers/data/messagesData';
+import getMessages from '../helpers/data/messagesData';
 
 function MessagesView({ user }) {
   const [messages, setMessages] = useState([]);
@@ -9,7 +9,6 @@ function MessagesView({ user }) {
 
   return (
     <>
-    <div>
     {
       messages.map((messageObject) => (
         <div key={messageObject.messageID}>
@@ -18,7 +17,6 @@ function MessagesView({ user }) {
         </div>
       ))
     }
-    </div>
     </>
   );
 }

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { Col, Container, Row } from 'reactstrap';
 import SideBar from './components/SideBar';
 import './App.scss';
 import getChannels from '../helpers/data/channelsData';
 import getUsers from '../helpers/data/usersData';
-import MessagesView from './views/MessagesView';
+import MessagesView from '../views/MessagesView';
+import NavBar from './components/NavBar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,12 +38,27 @@ function App() {
 
   return (
   <>
-    <SideBar
-      user={user}
-      channels={channels}
-      usersArray={usersArray}
-    />
-    <MessagesView/>
+    <Container fluid='true' className='App'>
+      <NavBar/>
+    <Row noGutters>
+      <Col>
+      <SideBar
+          user={user}
+          channels={channels}
+          usersArray={usersArray}
+          />
+      </Col>
+      <Col>
+      <MessagesView
+        className='messagesContainer'
+        user={user}
+        />
+      </Col>
+    </Row>
+      {/* <div className='messagesContainer'>
+      </div> */}
+
+    </Container>
   </>
   );
 }

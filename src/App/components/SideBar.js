@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
-import NavBar from './NavBar';
+// import NavBar from './NavBar';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
 const getChannels = (channels) => (
@@ -36,7 +36,6 @@ function SideBar({ user, channels, usersArray }) {
 
   return (
     <>
-    <div><NavBar></NavBar></div>
     <div className ="channelsSideNav">
       <Nav vertical >
         <NavbarToggler onClick={toggle} />

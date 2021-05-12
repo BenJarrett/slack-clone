@@ -5,7 +5,6 @@ const dbURL = firebaseConfig.databaseURL;
 
 const getMessages = () => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/messages.json`)
-    // .then((response) => resolve(console.warn(Object.values(response.data))))
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
