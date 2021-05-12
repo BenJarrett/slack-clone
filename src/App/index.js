@@ -5,6 +5,7 @@ import SideBar from './components/SideBar';
 import './App.scss';
 import getChannels from '../helpers/data/channelsData';
 import getUsers from '../helpers/data/usersData';
+import MessagesView from './views/MessagesView';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,6 +41,7 @@ function App() {
       channels={channels}
       usersArray={usersArray}
     />
+    <MessagesView/>
   </>
   );
 }
