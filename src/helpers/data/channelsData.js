@@ -5,7 +5,7 @@ const dbURL = firebaseConfig.databaseURL;
 
 const getChannels = () => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/channels.json`)
-    .then((respose) => resolve(Object.values(respose.data)))
+    .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
 
