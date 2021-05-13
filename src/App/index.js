@@ -3,12 +3,11 @@ import firebase from 'firebase/app';
 import { Col, Container, Row } from 'reactstrap';
 import 'firebase/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
-import SideBar from './components/SideBar';
-import './App.scss';
 import getChannels from '../helpers/data/channelsData';
 import { getUsers } from '../helpers/data/usersData';
 import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
+import SideBar from './components/SideBar';
 
 function App() {
   const [user, setUser] = useState(null);

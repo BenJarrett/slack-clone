@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
-// import NavBar from './NavBar';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
 const getChannels = (channels) => (
@@ -51,11 +50,11 @@ function SideBar({ user, channels, usersArray }) {
             }
           </div>
         }
+        </NavItem>
         <NavItem>
           <Link className="nav-link" to="/add-Channel">Add a Channel</Link>
         </NavItem>
       <h4>Channels</h4>
-        </NavItem>
         {user && getChannels(channels)}
       </Nav>
       <hr />
