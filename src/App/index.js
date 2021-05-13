@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import './App.scss';
 import getChannels from '../helpers/data/channelsData';
-import getUsers from '../helpers/data/usersData';
+import { getUsers, getConversationUsers } from '../helpers/data/usersData';
 import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
 
@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [channels, setChannels] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
+  const [conversationUsers, setConversationUsers] = ([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -30,6 +31,7 @@ function App() {
         if (authed !== null) {
           getChannels().then((resp) => setChannels(resp));
           getUsers().then((resp) => setUsersArray(resp));
+          getConversationUsers().then((resp) => setConversationUsers(resp));
         }
       } else if (user || user === null) {
         setUser(false);
@@ -45,9 +47,9 @@ function App() {
            <Row noGutters>
              <Col>
                <SideBar
-                   user={user}
-                   channels={channels}
-                   usersArray={usersArray}
+                  user={user}
+                  channels={channels}
+                  conversationUsers={conversationUsers}
                    />
              </Col>
              <Col>

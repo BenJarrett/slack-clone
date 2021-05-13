@@ -4,7 +4,7 @@ import firebaseConfig from '../apiKeys';
 const dbUrl = firebaseConfig.databaseURL;
 
 const getConversations = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/directMessages.json`)
+  axios.get(`${dbUrl}/conversations.json`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -15,10 +15,10 @@ const getConversations = () => new Promise((resolve, reject) => {
 });
 
 const createConversation = (dmObj) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/directMessages.json`, dmObj)
+  axios.post(`${dbUrl}/conversations.json`, dmObj)
     .then((response) => {
       const body = { conversationUsersID: response.data.name };
-      axios.patch(`${dbUrl}/directMessages/${response.data.name}.json`, body)
+      axios.patch(`${dbUrl}/conversations/${response.data.name}.json`, body)
         .then(() => {
           getConversations().then((directMessage) => resolve(directMessage));
         }).catch((error) => reject(error));

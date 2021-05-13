@@ -9,15 +9,10 @@ const getUsers = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// const getDirectMessageUsers = () => new Promise((resolve, reject) => {
-//   axios(`${dbURL}/directMessageUsers.json`)
-//     .then((response) => {
-//       if (response.data) {
-//         resolve(Object.values(response.data));
-//       } else {
-//         resolve([]);
-//       }
-//     }).catch((error) => reject(error));
-// });
+const getConversationUsers = () => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/conversationUsers.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
 
-export default getUsers;
+export { getUsers, getConversationUsers };

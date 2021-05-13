@@ -5,6 +5,7 @@ import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
+import convUsers from './convUsers';
 
 const getChannels = (channels) => (
   <>
@@ -18,19 +19,19 @@ const getChannels = (channels) => (
   </>
 );
 
-const getUsers = (usersArray) => (
-  <>
-    {
-      usersArray.map((user) => (
-        <NavItem key={user.uid}>
-          <NavLink >{user.fullName}</NavLink>
-        </NavItem>
-      ))
-    }
-  </>
-);
+// const getConvUsers = (convUsersArray) => (
+//   <>
+//     {
+//       convUsersArray.map((user) => (
+//         <NavItem key={user.uid}>
+//           <NavLink >{user.fullName}</NavLink>
+//         </NavItem>
+//       ))
+//     }
+//   </>
+// );
 
-function SideBar({ user, channels, usersArray }) {
+function SideBar({ user, channels, conversationUsers }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -64,7 +65,9 @@ function SideBar({ user, channels, usersArray }) {
       </NavItem>
       <h4>Names of Users</h4>
       <Nav vertical>
-         {user && getUsers(usersArray)}
+         {user && <convUsers
+         user={user}
+         conversationUsers={conversationUsers} />}
       </Nav>
     </div>
   </>
@@ -74,7 +77,7 @@ function SideBar({ user, channels, usersArray }) {
 SideBar.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array,
-  usersArray: PropTypes.array
+  conversationUsers: PropTypes.array,
 };
 
 export default SideBar;
