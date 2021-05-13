@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
-import 'firebase/auth';
 import { Col, Container, Row } from 'reactstrap';
-import SideBar from './components/SideBar';
+import 'firebase/auth';
+import { BrowserRouter as Router } from 'react-router-dom';
 import getChannels from '../helpers/data/channelsData';
-import getUsers from '../helpers/data/usersData';
-import MessagesView from '../views/MessagesView';
+import { getUsers } from '../helpers/data/usersData';
+import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
+import SideBar from './components/SideBar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,27 +37,30 @@ function App() {
   }, []);
 
   return (
-  <>
-    <Container fluid='true' className='App'>
-      <NavBar/>
-    <Row noGutters>
-      <Col>
-      <SideBar
-          user={user}
-          channels={channels}
-          usersArray={usersArray}
-          />
-      </Col>
-      <Col>
-      <MessagesView
-        className='messagesContainer'
-        user={user}
-        />
-      </Col>
-    </Row>
-
-    </Container>
-  </>
+    <>
+      <Container fluid='true' className='App'>
+       <Router>
+         <NavBar/>
+           <Row noGutters>
+             <Col>
+               <SideBar
+                   user={user}
+                   channels={channels}
+                   usersArray={usersArray}
+                   />
+             </Col>
+             <Col>
+               <Routes
+                  user={user}
+                  channels={channels}
+                  usersArray={usersArray}
+                  setUsersArray={setUsersArray}
+                />
+             </Col>
+           </Row>
+        </Router>
+      </Container>
+    </>
   );
 }
 
