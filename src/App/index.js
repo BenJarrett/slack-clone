@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import SideBar from './components/SideBar';
+import { SideBar } from './components/SideBar';
 import './App.scss';
-import getChannels from '../helpers/data/channelsData';
+import { getChannels } from '../helpers/data/channelsData';
 import getUsers from '../helpers/data/usersData';
 
 function App() {
