@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
+import { Col, Container, Row } from 'reactstrap';
 import 'firebase/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import './App.scss';
 import getChannels from '../helpers/data/channelsData';
 import getUsers from '../helpers/data/usersData';
-import Routes from '../helpers/routes';
+import Routes from '../helpers/data/Routes';
+import NavBar from './components/NavBar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,19 +38,30 @@ function App() {
   }, []);
 
   return (
-  <>
-  <Router>
-    <SideBar
-      user={user}
-      channels={channels}
-      usersArray={usersArray}
-    />
-    <Routes
-    user={user}
-    usersArray={usersArray}
-    />
-    </Router>
-  </>
+    <>
+      <Container fluid='true' className='App'>
+       <Router>
+         <NavBar/>
+           <Row noGutters>
+             <Col>
+               <SideBar
+                   user={user}
+                   channels={channels}
+                   usersArray={usersArray}
+                   />
+             </Col>
+             <Col>
+               <Routes
+                  user={user}
+                  channels={channels}
+                  usersArray={usersArray}
+                  setUsersArray={setUsersArray}
+                />
+             </Col>
+           </Row>
+        </Router>
+      </Container>
+    </>
   );
 }
 
