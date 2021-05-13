@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../../views/Home';
-import AddDirectMessage from '../../views/AddDirectMessage';
-// import AddChannelForm from '../addChannelsForm';
 import AddChannel from '../../views/AddChannel';
+import DirectMessage from '../../views/DirectMessage';
 
 export default function Routes({
   user, channels, usersArray, setUsersArray
@@ -18,12 +17,11 @@ export default function Routes({
            component={Home}
           />
          <Route
-           exact
-           path='/dm'
-           component={() => <AddDirectMessage
-                              user={user}
-                            /> }
-           />
+          exact path='/direct-messages'
+          component={() => <DirectMessage
+          user={user}
+          usersArray={usersArray}/>}
+         />
          <Route
            exact
            path='/add-Channel'

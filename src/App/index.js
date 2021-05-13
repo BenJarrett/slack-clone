@@ -58,6 +58,8 @@ function App() {
                   setUsersArray={setUsersArray}
                 />
              </Col>
+             <Col>
+             </Col>
            </Row>
         </Router>
       </Container>
