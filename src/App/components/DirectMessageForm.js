@@ -3,11 +3,12 @@ import {
   Form, Input, FormGroup, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { createConversation } from '../../helpers/data/directMessageData';
 // import Conversation from '../../views/Conversation';
 
 const DirectMessageForm = ({
   formTitle,
-  // user,
+  user,
   usersArray
 }) => {
   const [chosenUser, setChosenUser] = useState('');
@@ -19,6 +20,11 @@ const DirectMessageForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     console.warn(chosenUser);
+    const obj = {
+      senderUID: user.fullName,
+      receiverUID: chosenUser
+    };
+    createConversation(obj).then((response) => console.warn(response));
   };
 
   return (

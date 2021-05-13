@@ -17,7 +17,7 @@ const getConversations = () => new Promise((resolve, reject) => {
 const createConversation = (dmObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/directMessages.json`, dmObj)
     .then((response) => {
-      const body = { directMessageID: response.data.name };
+      const body = { conversationUsersID: response.data.name };
       axios.patch(`${dbUrl}/directMessages/${response.data.name}.json`, body)
         .then(() => {
           getConversations().then((directMessage) => resolve(directMessage));
