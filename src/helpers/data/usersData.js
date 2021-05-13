@@ -9,4 +9,10 @@ const getUsers = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getUsers;
+const getPotentialUsers = () => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/users.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+export { getUsers, getPotentialUsers };
