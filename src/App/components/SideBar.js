@@ -59,13 +59,13 @@ function SideBar({ user, channels, usersArray }) {
       </Nav>
       <hr />
       <div className ="usersSideNav"></div>
-        <NavItem>
-          <Link className="nav-link" to="/dm">Add DMr</Link>
-        </NavItem>
-        <h4>Names of Users</h4>
-        <Nav vertical>
-           {user && getUsers(usersArray)}
-        </Nav>
+      <NavItem>
+        <Link className="nav-link" to="/direct-messages">Add Direct Message</Link>
+      </NavItem>
+      <h4>Names of Users</h4>
+      <Nav vertical>
+         {user && getUsers(usersArray)}
+      </Nav>
     </div>
   </>
   );
