@@ -58,7 +58,7 @@ const DirectMessageForm = ({
       <div className='new-dm-form'>
         {/* <Form id='newDMForm' autoComplete='off' onSubmit={handleSubmit} > */}
         <Form id='newDMForm' autoComplete='off' >
-          <h2>{formTitle}</h2>
+          <h2 className='messages-header'>{formTitle}</h2>
           <FormGroup>
             <Label>Start a Direct message with</Label>
             <h4>Show the list of potential users to DM</h4>

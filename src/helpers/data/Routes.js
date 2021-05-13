@@ -3,36 +3,36 @@ import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../../views/Home';
 import AddDirectMessage from '../../views/AddDirectMessage';
-// import DirectMessageForm from '../directMessagesForm';
+// import AddChannelForm from '../addChannelsForm';
+import AddChannel from '../../views/AddChannel';
 
 export default function Routes({
-  user, channels, usersArray
+  user, channels, usersArray, setUsersArray
 }) {
-  console.warn(channels, usersArray);
   return (
     <div>
       <Switch>
          <Route
            exact
            path='/'
-           component={Home} />
+           component={Home}
+          />
          <Route
            exact
-           path='dm'
+           path='/dm'
            component={() => <AddDirectMessage
-                                user={user}
-                             />}
+                              user={user}
+                            /> }
            />
-         <Route />
-         {/* <Route
-            path='add-directMessage'
-            component={() => (<DirectMessageForm
-                               formTitle='Add a direct message'
-                               user={user}
-                              />)}
+         <Route
+           exact
+           path='/add-Channel'
+           component={() => <AddChannel
+                              channels={channels}
+                              usersArray={usersArray}
+                              setUsersArray={setUsersArray}
+                            /> }
            />
-         <Route /> */}
-         <Route />
       </Switch>
     </div>
   );
@@ -41,5 +41,6 @@ export default function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array.isRequired,
-  usersArray: PropTypes.array.isRequired
+  usersArray: PropTypes.array.isRequired,
+  setUsersArray: PropTypes.func.isRequired
 };

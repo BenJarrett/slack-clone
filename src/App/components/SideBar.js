@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
-import NavBar from './NavBar';
+// import NavBar from './NavBar';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
 const getChannels = (channels) => (
@@ -37,10 +37,6 @@ function SideBar({ user, channels, usersArray }) {
 
   return (
     <>
-    <div>
-        <NavBar>
-        </NavBar>
-    </div>
     <div className ="channelsSideNav">
       <Nav vertical >
         <NavbarToggler onClick={toggle} />
@@ -55,14 +51,17 @@ function SideBar({ user, channels, usersArray }) {
             }
           </div>
         }
+        <NavItem>
+          <Link className="nav-link" to="/add-Channel">Add a Channel</Link>
+        </NavItem>
       <h4>Channels</h4>
         </NavItem>
         {user && getChannels(channels)}
       </Nav>
       <hr />
       <div className ="usersSideNav"></div>
-      <NavItem>
-          <Link className="nav-link" to="/dm">Add a Direct Message</Link>
+        <NavItem>
+          <Link className="nav-link" to="/dm">Add DMr</Link>
         </NavItem>
         <h4>Names of Users</h4>
         <Nav vertical>
