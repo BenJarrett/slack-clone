@@ -1,5 +1,6 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
+import { getSingleUser } from './usersData';
 
 const dbUrl = firebaseConfig.databaseURL;
 
@@ -24,5 +25,14 @@ const createConversation = (dmObj) => new Promise((resolve, reject) => {
         }).catch((error) => reject(error));
     });
 });
+
+const getUserConversation = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/conversationUsers`)
+})
+
+const getDMuserInfo = (senderID) => {
+  const userInfo = getSingleUser(senderID);
+  const 
+}
 
 export { getConversations, createConversation };

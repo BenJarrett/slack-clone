@@ -10,9 +10,7 @@ const getUsers = () => new Promise((resolve, reject) => {
 });
 
 const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
-  console.warn(`${dbURL}/users.json?orderBy="uid"&equalTo="${firebaseKey}"`);
-  debugger;
-  axios.get(`${dbURL}/users.json?orderBy="uid"&equalTo="${firebaseKey}"`)
+  axios.get(`${dbURL}/users/${firebaseKey}.json`)
     .then((response) => resolve(response))
     .catch((error) => reject(error));
 });
