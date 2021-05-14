@@ -14,7 +14,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [channels, setChannels] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
-  const [conversationUsers, setConversationUsers] = ([]);
+  // const [usersArray, setUsersArray] = useState([]);
+  const [conversationUsers, setConversationUsers] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -30,14 +31,32 @@ function App() {
         setUsersArray(usersArray);
         if (authed !== null) {
           getChannels().then((resp) => setChannels(resp));
-          getUsers().then((resp) => setUsersArray(resp));
-          getConversationUsers().then((resp) => setConversationUsers(resp));
+          getUsers().then((resp) => {
+            setUsersArray(resp);
+          });
+          getConversationUsers().then((resp) => {
+            console.warn('resp', resp);
+          });
+          console.warn(conversationUsers);
+          console.warn(setConversationUsers);
         }
       } else if (user || user === null) {
         setUser(false);
       }
     });
   }, []);
+
+  // const gabbyisPissed = () => {
+  //   let arrayOfUsersForDM = [];
+  //   const arrayOfUsersForDM1 = [];
+  //   conversationUsers.forEach((conversation) => {
+  //     arrayOfUsersForDM = usersArray.filter((currUser) => (currUser.uid === conversation.receiverID || currUser.uid === conversation.senderID));
+  //     arrayOfUsersForDM1.push(arrayOfUsersForDM);
+  //   });
+  //   console.warn(arrayOfUsersForDM1);
+  //   setUsersArray(arrayOfUsersForDM1);
+  //   debugger;
+  // };
 
   return (
     <>
@@ -50,6 +69,8 @@ function App() {
                   user={user}
                   channels={channels}
                   conversationUsers={conversationUsers}
+                  usersArray={usersArray}
+                  setUsersArray={setUsersArray}
                    />
              </Col>
              <Col>

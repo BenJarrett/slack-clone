@@ -5,7 +5,7 @@ import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
-import convUsers from './convUsers';
+import ConvUsers from './convUsers';
 
 const getChannels = (channels) => (
   <>
@@ -31,7 +31,9 @@ const getChannels = (channels) => (
 //   </>
 // );
 
-function SideBar({ user, channels, conversationUsers }) {
+function SideBar({
+  user, channels, conversationUsers, usersArray, setUsersArray
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -65,9 +67,12 @@ function SideBar({ user, channels, conversationUsers }) {
       </NavItem>
       <h4>Names of Users</h4>
       <Nav vertical>
-         {user && <convUsers
+         {user && <ConvUsers
          user={user}
-         conversationUsers={conversationUsers} />}
+         conversationUsers={conversationUsers}
+         usersArray={usersArray}
+         setUsersArray={setUsersArray}
+         />}
       </Nav>
     </div>
   </>
@@ -78,6 +83,8 @@ SideBar.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array,
   conversationUsers: PropTypes.array,
+  usersArray: PropTypes.array,
+  setUsersArray: PropTypes.func
 };
 
 export default SideBar;

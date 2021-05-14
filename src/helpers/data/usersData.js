@@ -9,10 +9,27 @@ const getUsers = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getConversationUsers = () => new Promise((resolve, reject) => {
-  axios.get(`${dbURL}/conversationUsers.json`)
-    .then((response) => resolve(Object.values(response.data)))
+const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
+  console.warn(`${dbURL}/users.json?orderBy="uid"&equalTo="${firebaseKey}"`);
+  debugger;
+  axios.get(`${dbURL}/users.json?orderBy="uid"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(response))
     .catch((error) => reject(error));
 });
 
-export { getUsers, getConversationUsers };
+const getConversationUsers = () => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/conversationUsers.json`)
+    .then((response) => {
+      // Object.values(response.data).map((item) => {
+      //   const obj = {
+      //     receiverID: getSingleUser(item.senderID),
+      //     senderID: getSingleUser(item.receiverID)
+      //   };
+      //   return obj;
+      // });
+      resolve(response);
+    })
+    .catch((error) => reject(error));
+});
+
+export { getUsers, getConversationUsers, getSingleUser };
