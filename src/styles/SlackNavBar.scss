@@ -24,6 +24,7 @@
 .channelsSideNav {
   background-color: rgb(65, 64, 64);
   width: 250px;
+
 }
 
 .usersSideNav {
@@ -33,4 +34,5 @@
   height: 10vh;
   display: flex;
   justify-content: center;
+  // overflow-y: scroll;
 }

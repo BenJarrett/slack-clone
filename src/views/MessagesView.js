@@ -12,6 +12,7 @@ function MessagesView({ user }) {
     {
       messages.map((messageObject) => (
         <div key={messageObject.messageID}>
+          <h3>hello</h3>
           {messageObject.text}
           {messageObject.timeStamp}
         </div>
