@@ -16,7 +16,7 @@ const AddChannelForm = ({
   const [tempNames, setTempNames] = useState([]);
   const [channelObj, setChannelObj] = useState({
     channelName: '',
-    isChannelPublic: true,
+    isChannelPublic: false,
     creatorID: user ? user.uid : '',
   });
   let arrayOfUsersForNewChannel = [];
@@ -76,7 +76,7 @@ const AddChannelForm = ({
             </Col>
           </FormGroup>
           <FormGroup row>
-             <Label sm={6}>Is this a private Channel?</Label>
+             <Label sm={6}>Is this Channel public?</Label>
              <Col sm={2}>
                <Input
                  name='isChannelPublic'
