@@ -11,15 +11,7 @@ const MessagesForm = ({
   messageID,
   // userUID,
   text,
-  timestamp
 }) => {
-  const [message, setMessage] = useState({
-    messageID: messageID || '',
-    userUID: user ? user.uid : '',
-    text: text || '',
-    timestamp: timestamp || '',
-  });
-
   const GetCurrentDate = () => {
     const getDateNow = new Date();
     const year = getDateNow.getFullYear();
@@ -30,6 +22,14 @@ const MessagesForm = ({
     const seconds = getDateNow.getSeconds().toString().padStart(2, '0');
     return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
   };
+
+  const [message, setMessage] = useState({
+    messageID: messageID || '',
+    userUID: user ? user.uid : '',
+    text: text || '',
+    timestamp: GetCurrentDate()
+  });
+
   const handleInputChange = (e) => {
     setMessage((prevState) => ({
       ...prevState,
@@ -87,7 +87,7 @@ MessagesForm.propTypes = {
   userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
-  timestamp: PropTypes.string
+  // timestamp: PropTypes.string
 };
 
 export default MessagesForm;
