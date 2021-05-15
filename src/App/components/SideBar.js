@@ -5,7 +5,6 @@ import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
-// import { deleteChannel } from '../../helpers/data/channelsData';
 import { deleteChannel } from '../../helpers/data/channelsData';
 
 const getUsers = (usersArray) => (
@@ -26,11 +25,8 @@ function SideBar({
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const getChannelLinks = () => {
-    // console.warn(setChannels(channels));
     const handleButtonClick = (channelID) => {
-      // deleteChannel(channelID);
       deleteChannel(channelID).then(setChannels);
-      // console.warn(channelID);
     };
     return (
       <>
