@@ -48,6 +48,7 @@ function App() {
                    user={user}
                    channels={channels}
                    usersArray={usersArray}
+                   setChannels={setChannels}
                    />
              </Col>
              <Col>
