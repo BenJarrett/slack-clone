@@ -9,4 +9,15 @@ const getMessages = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getMessages;
+const createMessage = (msgObj) => new Promise((resolve, reject) => {
+  axios.post(`${dbURL}/messages.json`, msgObj)
+    .then((response) => {
+      const body = { messageID: response.data.name };
+      axios.patch(`${dbURL}/messages.json${response.data.name}`, body)
+        .then(() => {
+          getMessages().then((messagesArray) => resolve(messagesArray));
+        });
+    }).catch((error) => reject(error));
+});
+
+export { getMessages, createMessage };
