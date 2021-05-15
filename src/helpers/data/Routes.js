@@ -6,15 +6,17 @@ import AddChannel from '../../views/AddChannel';
 import DirectMessage from '../../views/DirectMessage';
 
 export default function Routes({
-  user, channels, usersArray, setUsersArray
+  user, channels, usersArray, setUsersArray, setMessages
 }) {
   return (
     <div>
       <Switch>
          <Route
-           exact
-           path='/'
-           component={Home}
+           exact path='/'
+           component={() => <Home
+            setMessages={setMessages}
+            user={user}
+            usersArray={usersArray}/>}
           />
          <Route
           exact path='/direct-messages'
@@ -40,5 +42,6 @@ Routes.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array.isRequired,
   usersArray: PropTypes.array.isRequired,
-  setUsersArray: PropTypes.func.isRequired
+  setUsersArray: PropTypes.func.isRequired,
+  setMessages: PropTypes.func.isRequired
 };

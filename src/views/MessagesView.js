@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MessagesForm from '../App/components/MessagesForm';
 
-import { getMessages } from '../helpers/data/messagesData';
+// import { getMessages } from '../helpers/data/messagesData';
 
-function MessagesView({ user }) {
-  const [messages, setMessages] = useState([]);
+function MessagesView({
+  user, usersArray, setMessages, userUID, text, timestamp
+}) {
+// getMessages(user).then((messagesArray) => setMessages(messagesArray));
 
-  getMessages(user).then((messagesArray) => setMessages(messagesArray));
-
+  // console.warn(setMessages(messages));
   return (
     <>
-    <MessagesForm/>
+    {<MessagesForm
+      setMessages={setMessages}
+      user={user}
+      usersArray={usersArray}
+      userUID={userUID}
+      text={text}
+      timestamp={timestamp}
+    />}
 
     {
-      console.warn(messages)
       // messages.map((messageObject) => (
       //   <div key={messageObject.messageID}>
       //     <h3>hello</h3>
@@ -29,7 +36,12 @@ function MessagesView({ user }) {
 
 MessagesView.propTypes = {
   user: PropTypes.any,
-  setMessages: PropTypes.array
+  usersArray: PropTypes.array,
+  setMessages: PropTypes.func,
+  userUID: PropTypes.string,
+  messageID: PropTypes.string,
+  text: PropTypes.string,
+  timestamp: PropTypes.instanceOf(Date)
 };
 
 export default MessagesView;

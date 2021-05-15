@@ -13,6 +13,7 @@ import NavBar from './components/NavBar';
 function App() {
   const [user, setUser] = useState(null);
   const [channels, setChannels] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
 
   useEffect(() => {
@@ -56,6 +57,8 @@ function App() {
                   channels={channels}
                   usersArray={usersArray}
                   setUsersArray={setUsersArray}
+                  messages={messages}
+                  setMessages={setMessages}
                 />
              </Col>
              <Col>

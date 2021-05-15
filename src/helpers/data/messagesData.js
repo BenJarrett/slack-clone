@@ -13,9 +13,9 @@ const createMessage = (msgObj) => new Promise((resolve, reject) => {
   axios.post(`${dbURL}/messages.json`, msgObj)
     .then((response) => {
       const body = { messageID: response.data.name };
-      axios.patch(`${dbURL}/messages.json${response.data.name}`, body)
+      axios.patch(`${dbURL}/messages/${response.data.name}.json`, body)
         .then(() => {
-          getMessages().then((messagesArray) => resolve(messagesArray));
+          getMessages().then((message) => resolve(message));
         });
     }).catch((error) => reject(error));
 });
