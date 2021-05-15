@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { NavItem, NavLink } from 'reactstrap';
 
 function ConvUsers({ usersArray, conversationUsers, user }) {
-  console.warn('convUsers');
-  console.warn(usersArray, 'usersArray');
-
   let tempSender = {};
   let tempReceiver = {};
   const conversationUsersAll = [];
@@ -28,8 +25,7 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
   return (
     <>
     {
-      <NavItem>
-        <NavLink>
+      <div>
           {
             filteredConvserstionUsersAll.map((item) => (
             <NavItem key={item.uid}>
@@ -39,8 +35,7 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
             </NavItem>
             ))
           }
-        </NavLink>
-      </NavItem>
+      </div>
     }
     </>
   );

@@ -15,15 +15,12 @@ const DirectMessageForm = ({
   setConversationUsers
 }) => {
   const handleInputChange = (e) => {
-    console.warn(e.target.value);
     const arrValue = usersArray.find(({ fullName }) => fullName === e.target.value);
-    console.warn('arrValue', arrValue);
     setChosenUser(arrValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn('chosenUser', chosenUser);
     const obj = {
       senderUID: user.uid,
       receiverUID: chosenUser.uid
