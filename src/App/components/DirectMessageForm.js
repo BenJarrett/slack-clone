@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { createConversation } from '../../helpers/data/directMessageData';
+import { getConversationUsers } from '../../helpers/data/usersData';
 
 const DirectMessageForm = ({
   formTitle,
@@ -26,7 +27,7 @@ const DirectMessageForm = ({
       senderUID: user.uid,
       receiverUID: chosenUser.uid
     };
-    createConversation(obj).then((response) => console.warn(response));
+    createConversation(obj).then(() => getConversationUsers().then((response) => setConversationUsers(response)));
     // setChosenUser(usersArray[0]);
   };
 
