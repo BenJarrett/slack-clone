@@ -7,7 +7,7 @@ import DirectMessage from '../../views/DirectMessage';
 import Conversation from '../../views/Conversation';
 
 export default function Routes({
-  user, channels, usersArray, setUsersArray, setChosenUser, chosenUser
+  user, channels, usersArray, setUsersArray, setChosenUser, chosenUser, setConversationUsers
 }) {
   return (
     <div>
@@ -23,7 +23,8 @@ export default function Routes({
           chosenUser={chosenUser}
           setChosenUser={setChosenUser}
           user={user}
-          usersArray={usersArray}/>}
+          usersArray={usersArray}
+          setConversationUsers={setConversationUsers}/>}
          />
          <Route
          exact path='/direct-messages/:firebaseKey'
@@ -49,5 +50,6 @@ Routes.propTypes = {
   usersArray: PropTypes.array.isRequired,
   setUsersArray: PropTypes.func,
   chosenUser: PropTypes.object,
-  setChosenUser: PropTypes.func
+  setChosenUser: PropTypes.func,
+  setConversationUsers: PropTypes.func
 };

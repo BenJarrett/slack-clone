@@ -11,7 +11,8 @@ const DirectMessageForm = ({
   user,
   usersArray,
   chosenUser,
-  setChosenUser
+  setChosenUser,
+  setConversationUsers
 }) => {
   const handleInputChange = (e) => {
     console.warn(e.target.value);
@@ -28,7 +29,6 @@ const DirectMessageForm = ({
       receiverUID: chosenUser.uid
     };
     createConversation(obj).then(() => getConversationUsers().then((response) => setConversationUsers(response)));
-    // setChosenUser(usersArray[0]);
   };
 
   return (
@@ -55,7 +55,8 @@ DirectMessageForm.propTypes = {
   usersArray: PropTypes.array,
   user: PropTypes.any,
   chosenUser: PropTypes.object.isRequired,
-  setChosenUser: PropTypes.func.isRequired
+  setChosenUser: PropTypes.func.isRequired,
+  setConversationUsers: PropTypes.func
 };
 
 export default DirectMessageForm;

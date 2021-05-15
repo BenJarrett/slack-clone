@@ -70,6 +70,7 @@ function App() {
                   setUsersArray={setUsersArray}
                   setChosenUser={setChosenUser}
                   chosenUser={chosenUser}
+                  setConversationUsers={setConversationUsers}
                 />
              </Col>
              <Col>
