@@ -44,7 +44,6 @@ const MessagesForm = ({
     }));
     // console.warn(GetCurrentDate());
     console.warn(message);
-    debugger;
     createMessage(message);
     // .then((messagesArray) => setMessages(messagesArray));
 
