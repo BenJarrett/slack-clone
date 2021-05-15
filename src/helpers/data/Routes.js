@@ -6,7 +6,7 @@ import AddChannel from '../../views/AddChannel';
 import DirectMessage from '../../views/DirectMessage';
 
 export default function Routes({
-  user, channels, usersArray, setUsersArray
+  user, channels, usersArray, setUsersArray, setChosenUser, chosenUser
 }) {
   return (
     <div>
@@ -19,6 +19,8 @@ export default function Routes({
          <Route
           exact path='/direct-messages'
           component={() => <DirectMessage
+          chosenUser={chosenUser}
+          setChosenUser={setChosenUser}
           user={user}
           usersArray={usersArray}/>}
          />
@@ -40,5 +42,7 @@ Routes.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array.isRequired,
   usersArray: PropTypes.array.isRequired,
-  setUsersArray: PropTypes.func.isRequired
+  setUsersArray: PropTypes.func.isRequired,
+  chosenUser: PropTypes.object,
+  setChosenUser: PropTypes.func
 };

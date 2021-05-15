@@ -19,23 +19,10 @@ const getChannels = (channels) => (
     }
   </>
 );
-
-// const getConvUsers = (convUsersArray) => (
-//   <>
-//     {
-//       convUsersArray.map((user) => (
-//         <NavItem key={user.uid}>
-//           <NavLink >{user.fullName}</NavLink>
-//         </NavItem>
-//       ))
-//     }
-//   </>
-// );
-
 function SideBar({
-  user, channels,
-  conversationUsers,
-  // usersArray, setUsersArray
+  user, channels, chosenUser
+  // usersArray,
+  // setUsersArray
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -71,10 +58,7 @@ function SideBar({
       <h4>Names of Users</h4>
       <Nav vertical>
          {user && <ConvUsers
-         user={user}
-         conversationUsers={conversationUsers}
-        //  usersArray={usersArray}
-        //  setUsersArray={setUsersArray}
+         chosenUser={chosenUser}
          />}
        </Nav>
     </div>
@@ -85,9 +69,7 @@ function SideBar({
 SideBar.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array,
-  conversationUsers: PropTypes.array,
-  usersArray: PropTypes.array,
-  setUsersArray: PropTypes.func
+  chosenUser: PropTypes.object
 };
 
 export default SideBar;

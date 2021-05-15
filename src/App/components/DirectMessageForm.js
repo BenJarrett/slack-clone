@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Form, Input, FormGroup, Button
 } from 'reactstrap';
@@ -8,28 +8,29 @@ import { createConversation } from '../../helpers/data/directMessageData';
 const DirectMessageForm = ({
   formTitle,
   user,
-  usersArray
+  usersArray,
+  chosenUser,
+  setChosenUser
 }) => {
-  // const [chosenUser, setChosenUser] = useState({});
-  const [found, setFound] = useState(usersArray[0]);
+  // const [chosenUser, setChosenUser] = useState(usersArray[0]);
   // Have to set chosenUser to first item of array bc it is the one that appears in the dropdown first. Otherwise, the inputChange does not set ChosenUser.;
 
   const handleInputChange = (e) => {
     console.warn(e.target.value);
     const arrValue = usersArray.find(({ fullName }) => fullName === e.target.value);
     console.warn(arrValue);
-    setFound(arrValue);
+    setChosenUser(arrValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(found);
+    console.warn(chosenUser);
     const obj = {
       senderUID: user.uid,
-      receiverUID: found.uid
+      receiverUID: chosenUser.uid
     };
     createConversation(obj).then((response) => console.warn(response));
-    setFound(usersArray[0]);
+    setChosenUser(usersArray[0]);
   };
 
   return (
@@ -38,7 +39,7 @@ const DirectMessageForm = ({
         <Form id='newDMForm' autoComplete='off'>
           <h3>{formTitle}</h3>
           <FormGroup>
-             <Input type="select" name="fullName" id="exampleSelect" value={found} onChange={handleInputChange}>
+             <Input type="select" name="fullName" id="exampleSelect" value={chosenUser} onChange={handleInputChange}>
               {
                 usersArray.map((item) => <option key={item.uid}>{item.fullName}</option>)
               }
@@ -54,7 +55,9 @@ const DirectMessageForm = ({
 DirectMessageForm.propTypes = {
   formTitle: PropTypes.string.isRequired,
   usersArray: PropTypes.array,
-  user: PropTypes.any
+  user: PropTypes.any,
+  chosenUser: PropTypes.object,
+  setChosenUser: PropTypes.func
 };
 
 export default DirectMessageForm;
