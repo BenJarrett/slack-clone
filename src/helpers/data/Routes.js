@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../../views/Home';
 import AddChannel from '../../views/AddChannel';
 import DirectMessage from '../../views/DirectMessage';
+import Conversation from '../../views/Conversation';
 
 export default function Routes({
   user, channels, usersArray, setUsersArray, setChosenUser, chosenUser
@@ -23,6 +24,10 @@ export default function Routes({
           setChosenUser={setChosenUser}
           user={user}
           usersArray={usersArray}/>}
+         />
+         <Route
+         exact path='/direct-messages/:firebaseKey'
+         component={() => <Conversation/>}
          />
          <Route
            exact

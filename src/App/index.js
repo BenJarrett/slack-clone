@@ -16,6 +16,7 @@ function App() {
   const [usersArray, setUsersArray] = useState([]);
   const [conversationUsers, setConversationUsers] = useState([]);
   const [chosenUser, setChosenUser] = useState({});
+  const [chosenUserArray, setChosenUserArray] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -57,6 +58,8 @@ function App() {
                   chosenUser={chosenUser}
                   conversationUsers={conversationUsers}
                   usersArray={usersArray}
+                  chosenUserArray={chosenUserArray}
+                  setChosenUserArray={setChosenUserArray}
                    />
              </Col>
              <Col>

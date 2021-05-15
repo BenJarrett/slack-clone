@@ -4,31 +4,43 @@ import { NavItem, NavLink } from 'reactstrap';
 
 function ConvUsers({ usersArray, conversationUsers, user }) {
   console.warn('convUsers');
-  const findUserName = (senderID) => {
-    let person = '';
-    usersArray.forEach((item) => {
-      if (item.uid === senderID) {
-        person = item.fullName;
-        console.warn('person', person);
-      }
-    });
-    return person;
-  };
+  console.warn(usersArray, 'usersArray');
+
+  let tempSender = {};
+  let tempReceiver = {};
+  const conversationUsersAll = [];
+  const filteredConvserstionUsersAll = [];
+  conversationUsers.forEach((userID) => {
+    tempSender = usersArray.find(({ uid }) => uid === userID.senderUID);
+    tempReceiver = usersArray.find(({ uid }) => uid === userID.receiverUID);
+    const obj = {
+      sender: { ...tempSender },
+      receiver: { ...tempReceiver }
+    };
+    conversationUsersAll.push(obj);
+    if (tempSender.uid !== user.uid) {
+      filteredConvserstionUsersAll.push(tempSender);
+    } else if (tempReceiver.uid !== user.uid) {
+      filteredConvserstionUsersAll.push(tempReceiver);
+    }
+  });
 
   return (
     <>
     {
-      conversationUsers.map((item) => (
-        item.senderID === user.uid || item.receiverID === user.uid
-          ? <NavItem key={item.conversationUsersID}>
-        <NavLink >
-             {
-              item.senderID === user.uid ? findUserName(item.receiverID) : findUserName(item.senderID)
-            }
+      <NavItem>
+        <NavLink>
+          {
+            filteredConvserstionUsersAll.map((item) => (
+            <NavItem key={item.uid}>
+              <NavLink >
+              {item.fullName}
+            </NavLink>
+            </NavItem>
+            ))
+          }
         </NavLink>
       </NavItem>
-          : ''
-      ))
     }
     </>
   );
@@ -40,35 +52,3 @@ ConvUsers.propTypes = {
   conversationUsers: PropTypes.array
 };
 export default ConvUsers;
-// <>
-
-// let arrayOfUsersForDM = [];
-// const arrayOfUsersForDM1 = [];
-
-// const gabbyisPissed = (usersArray1) => {
-//   conversationUsers.forEach((conversation) => {
-//     arrayOfUsersForDM = usersArray1.filter((currUser) => (currUser.uid === conversation.receiverID || currUser.uid === conversation.senderID));
-//     arrayOfUsersForDM1.push(arrayOfUsersForDM);
-//   });
-//   console.warn(arrayOfUsersForDM1);
-//   setUsersArray(arrayOfUsersForDM1);
-//   debugger;
-// };
-
-//   gabbyisPissed(usersArray);
-//   return (
-//     <>
-//      {
-//        arrayOfUsersForDM1.map((item) => (
-//            <NavItem key={item.uid}>
-//              <NavLink>
-//                {
-//                  item.fullName
-//                }
-//              </NavLink>
-//            </NavItem>
-//        ))
-//      }
-//     </>
-//   );
-// }
