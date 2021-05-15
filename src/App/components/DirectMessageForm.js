@@ -4,27 +4,32 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { createConversation } from '../../helpers/data/directMessageData';
-// import Conversation from '../../views/Conversation';
 
 const DirectMessageForm = ({
   formTitle,
   user,
   usersArray
 }) => {
-  const [chosenUser, setChosenUser] = useState('');
+  // const [chosenUser, setChosenUser] = useState({});
+  const [found, setFound] = useState(usersArray[0]);
+  // Have to set chosenUser to first item of array bc it is the one that appears in the dropdown first. Otherwise, the inputChange does not set ChosenUser.;
 
   const handleInputChange = (e) => {
-    setChosenUser(e.target.value);
+    console.warn(e.target.value);
+    const arrValue = usersArray.find(({ fullName }) => fullName === e.target.value);
+    console.warn(arrValue);
+    setFound(arrValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(chosenUser);
+    console.warn(found);
     const obj = {
-      senderUID: user.fullName,
-      receiverUID: chosenUser
+      senderUID: user.uid,
+      receiverUID: found.uid
     };
     createConversation(obj).then((response) => console.warn(response));
+    setFound(usersArray[0]);
   };
 
   return (
@@ -33,7 +38,7 @@ const DirectMessageForm = ({
         <Form id='newDMForm' autoComplete='off'>
           <h3>{formTitle}</h3>
           <FormGroup>
-             <Input type="select" name="fullName" id="exampleSelect" value={chosenUser} onChange={handleInputChange}>
+             <Input type="select" name="fullName" id="exampleSelect" value={found} onChange={handleInputChange}>
               {
                 usersArray.map((item) => <option key={item.uid}>{item.fullName}</option>)
               }

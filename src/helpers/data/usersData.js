@@ -17,17 +17,16 @@ const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
 
 const getConversationUsers = () => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/conversationUsers.json`)
-    .then((response) => {
-      // Object.values(response.data).map((item) => {
-      //   const obj = {
-      //     receiverID: getSingleUser(item.senderID),
-      //     senderID: getSingleUser(item.receiverID)
-      //   };
-      //   return obj;
-      // });
-      resolve(response);
-    })
+    .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
 
-export { getUsers, getConversationUsers, getSingleUser };
+const getChosenUser = (fullName) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/users.json?orderBy="fullName"&equalTo="${fullName}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+export {
+  getUsers, getConversationUsers, getSingleUser, getChosenUser
+};

@@ -14,7 +14,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [channels, setChannels] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
-  // const [usersArray, setUsersArray] = useState([]);
   const [conversationUsers, setConversationUsers] = useState([]);
 
   useEffect(() => {
@@ -35,10 +34,8 @@ function App() {
             setUsersArray(resp);
           });
           getConversationUsers().then((resp) => {
-            console.warn('resp', resp);
+            setConversationUsers(resp);
           });
-          console.warn(conversationUsers);
-          console.warn(setConversationUsers);
         }
       } else if (user || user === null) {
         setUser(false);
@@ -68,8 +65,8 @@ function App() {
                <SideBar
                   user={user}
                   channels={channels}
-                  conversationUsers={conversationUsers}
                   usersArray={usersArray}
+                  conversationUsers={conversationUsers}
                   setUsersArray={setUsersArray}
                    />
              </Col>

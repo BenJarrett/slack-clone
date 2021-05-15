@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
 import ConvUsers from './convUsers';
+// import ConvUsers from './convUsers';
 
 const getChannels = (channels) => (
   <>
@@ -32,7 +33,9 @@ const getChannels = (channels) => (
 // );
 
 function SideBar({
-  user, channels, conversationUsers, usersArray, setUsersArray
+  user, channels,
+  conversationUsers,
+  // usersArray, setUsersArray
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -70,10 +73,10 @@ function SideBar({
          {user && <ConvUsers
          user={user}
          conversationUsers={conversationUsers}
-         usersArray={usersArray}
-         setUsersArray={setUsersArray}
+        //  usersArray={usersArray}
+        //  setUsersArray={setUsersArray}
          />}
-      </Nav>
+       </Nav>
     </div>
   </>
   );
