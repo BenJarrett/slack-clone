@@ -5,8 +5,8 @@ import 'firebase/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import './App.scss';
-import getChannels from '../helpers/data/channelsData';
 import { getUsers, getConversationUsers } from '../helpers/data/usersData';
+import { getChannels } from '../helpers/data/channelsData';
 import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
 
@@ -60,6 +60,7 @@ function App() {
                   usersArray={usersArray}
                   chosenUserArray={chosenUserArray}
                   setChosenUserArray={setChosenUserArray}
+                  setChannels={setChannels}
                    />
              </Col>
              <Col>

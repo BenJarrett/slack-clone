@@ -9,4 +9,9 @@ const getChannels = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getChannels;
+const deleteChannel = (channelID) => new Promise((resolve, reject) => {
+  axios.delete(`${dbURL}/channels/${channelID}.json`)
+    .then(() => getChannels().then((channelArray) => resolve(channelArray)))
+    .catch((error) => reject(error));
+});
+export { getChannels, deleteChannel };
