@@ -12,7 +12,6 @@ const DirectMessageForm = ({
   chosenUser,
   setChosenUser
 }) => {
-  // const [chosenUser, setChosenUser] = useState(usersArray[0]);
   // Have to set chosenUser to first item of array bc it is the one that appears in the dropdown first. Otherwise, the inputChange does not set ChosenUser.;
 
   const handleInputChange = (e) => {
@@ -56,8 +55,8 @@ DirectMessageForm.propTypes = {
   formTitle: PropTypes.string.isRequired,
   usersArray: PropTypes.array,
   user: PropTypes.any,
-  chosenUser: PropTypes.object,
-  setChosenUser: PropTypes.func
+  chosenUser: PropTypes.object.isRequired,
+  setChosenUser: PropTypes.func.isRequired
 };
 
 export default DirectMessageForm;

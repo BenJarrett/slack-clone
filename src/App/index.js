@@ -44,18 +44,6 @@ function App() {
     });
   }, []);
 
-  // const gabbyisPissed = () => {
-  //   let arrayOfUsersForDM = [];
-  //   const arrayOfUsersForDM1 = [];
-  //   conversationUsers.forEach((conversation) => {
-  //     arrayOfUsersForDM = usersArray.filter((currUser) => (currUser.uid === conversation.receiverID || currUser.uid === conversation.senderID));
-  //     arrayOfUsersForDM1.push(arrayOfUsersForDM);
-  //   });
-  //   console.warn(arrayOfUsersForDM1);
-  //   setUsersArray(arrayOfUsersForDM1);
-  //   debugger;
-  // };
-
   return (
     <>
       <Container fluid='true' className='App'>
@@ -68,6 +56,7 @@ function App() {
                   channels={channels}
                   chosenUser={chosenUser}
                   conversationUsers={conversationUsers}
+                  usersArray={usersArray}
                    />
              </Col>
              <Col>

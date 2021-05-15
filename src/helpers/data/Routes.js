@@ -42,7 +42,7 @@ Routes.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array.isRequired,
   usersArray: PropTypes.array.isRequired,
-  setUsersArray: PropTypes.func.isRequired,
+  setUsersArray: PropTypes.func,
   chosenUser: PropTypes.object,
   setChosenUser: PropTypes.func
 };

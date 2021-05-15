@@ -2,36 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavItem, NavLink } from 'reactstrap';
 
-function ConvUsers({ chosenUser }) {
+function ConvUsers({ usersArray, conversationUsers, user }) {
+  console.warn('convUsers');
+  const findUserName = (senderID) => {
+    let person = '';
+    usersArray.forEach((item) => {
+      if (item.uid === senderID) {
+        person = item.fullName;
+        console.warn('person', person);
+      }
+    });
+    return person;
+  };
+
   return (
     <>
-    <NavItem key={chosenUser.uid}>
-      <NavLink>
-        {chosenUser.fullName}
-      </NavLink>
-    </NavItem>
+    {
+      conversationUsers.map((item) => (
+        item.senderID === user.uid || item.receiverID === user.uid
+          ? <NavItem key={item.conversationUsersID}>
+        <NavLink >
+             {
+              item.senderID === user.uid ? findUserName(item.receiverID) : findUserName(item.senderID)
+            }
+        </NavLink>
+      </NavItem>
+          : ''
+      ))
+    }
     </>
   );
 }
 
 ConvUsers.propTypes = {
-  chosenUser: PropTypes.object
+  user: PropTypes.any,
+  usersArray: PropTypes.array,
+  conversationUsers: PropTypes.array
 };
 export default ConvUsers;
 // <>
-// {
-//   conversationUsers.map((item) => (
-//     item.senderID === user.uid || item.receiverID === user.uid
-//       ? <NavItem key={item.conversationUsersID}>
-//     <NavLink >
-//          {
-//            item.senderID === user.uid ? item.receiverID : item.senderID
-//           }
-//     </NavLink>
-//   </NavItem>
-//       : ''
-//   ))
-//   }
 
 // let arrayOfUsersForDM = [];
 // const arrayOfUsersForDM1 = [];

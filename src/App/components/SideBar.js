@@ -6,7 +6,6 @@ import {
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
 import ConvUsers from './convUsers';
-// import ConvUsers from './convUsers';
 
 const getChannels = (channels) => (
   <>
@@ -20,8 +19,10 @@ const getChannels = (channels) => (
   </>
 );
 function SideBar({
-  user, channels, chosenUser
-  // usersArray,
+  user,
+  channels,
+  conversationUsers,
+  usersArray,
   // setUsersArray
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +59,9 @@ function SideBar({
       <h4>Names of Users</h4>
       <Nav vertical>
          {user && <ConvUsers
-         chosenUser={chosenUser}
+         usersArray={usersArray}
+         user={user}
+         conversationUsers={conversationUsers}
          />}
        </Nav>
     </div>
@@ -69,7 +72,8 @@ function SideBar({
 SideBar.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array,
-  chosenUser: PropTypes.object
+  usersArray: PropTypes.array,
+  conversationUsers: PropTypes.array
 };
 
 export default SideBar;
