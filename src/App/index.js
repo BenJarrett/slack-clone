@@ -46,15 +46,16 @@ function App() {
        <Router>
          <NavBar/>
            <Row noGutters>
-             <Col>
                <SideBar
                    user={user}
                    channels={channels}
                    usersArray={usersArray}
                    setChannels={setChannels}
                    />
+             <Col >
              </Col>
-             <Col>
+             <Col xs={8}
+             >
                <Routes
                   user={user}
                   channels={channels}

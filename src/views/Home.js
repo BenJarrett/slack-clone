@@ -4,8 +4,7 @@ import MessagesView from './MessagesView';
 
 function Home({ setMessages, messages, user }) {
   return (
-    <div>
-     <h1>Welcome to Slack-Clone</h1>
+    <div className='messagesViewContainer'>
      {<MessagesView
         messages={messages}
         setMessages={setMessages}

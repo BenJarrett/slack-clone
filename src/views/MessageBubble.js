@@ -1,7 +1,6 @@
 import React from 'react';
-// import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import { rightArrow, rightArrowOverlap } from '../styles/index.scss';
+// import { rightArrow, rightArrowOverlap } from '../styles/index.scss';
 
 function MessageBubble({ messages }) {
   // const rightArrow = ({
@@ -41,12 +40,13 @@ function MessageBubble({ messages }) {
           marginTop: 5,
           marginRight: '5%',
           maxWidth: '50%',
-          alignSelf: 'flex-end',
+          // alignSelf: 'flex-end',
           // borderRadius: 20,
         }}>
-          <div style={{ fontSize: 16, color: '#fff' }} key={msgObj.messageID}>{msgObj.text}</div>
-              <div className={rightArrow}></div>
-              <div style={rightArrowOverlap}></div>
+          <div>
+            <div style={{ fontSize: 16, color: '#fff' }} >{msgObj.text}</div>
+            <div style={{ fontSize: 12, color: '#fff' }} >{msgObj.timestamp}</div>
+            </div>
         </div>
       ))}
     </>

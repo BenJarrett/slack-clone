@@ -24,7 +24,10 @@
 .channelsSideNav {
   background-color: rgb(65, 64, 64);
   width: 250px;
-
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow: scroll;
 }
 
 .usersSideNav {

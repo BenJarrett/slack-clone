@@ -56,9 +56,8 @@ const MessagesForm = ({
   };
   return (
   <div>
-    <Form>
-      <FormGroup id='message-form'>
-            {/* <Input type="textarea" name="text" id="exampleText" /> */}
+    <Form id='message-form'>
+      <FormGroup >
       <InputGroup>
         <Input
           name="text"
@@ -68,7 +67,7 @@ const MessagesForm = ({
           onChange={handleInputChange}
           />
           <InputGroupAddon addonType="append">
-            <Button color="primary"
+            <Button color="success"
             onClick={handleSubmit}
             >Send
           </Button>
