@@ -1,33 +1,34 @@
 import React from 'react';
 // import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { rightArrow, rightArrowOverlap } from '../styles/index.scss';
 
 function MessageBubble({ messages }) {
-  const rightArrow = ({
-    rightArrow: {
-      position: 'absolute',
-      backgroundColor: '#0078fe',
-      // backgroundColor:'red',
-      width: 20,
-      height: 25,
-      bottom: 0,
-      borderBottomLeftRadius: 25,
-      right: -10
-    },
-  });
+  // const rightArrow = ({
+  //   rightArrow: {
+  //     position: 'absolute',
+  //     backgroundColor: '#0078fe',
+  //     // backgroundColor:'red',
+  //     width: 20,
+  //     height: 25,
+  //     bottom: 0,
+  //     borderBottomLeftRadius: 25,
+  //     right: -10
+  //   },
+  // });
 
-  const rightArrowOverlap = ({
-    rightArrowOverlap: {
-      position: 'absolute',
-      backgroundColor: '#eeeeee',
-      // backgroundColor:'green',
-      width: 20,
-      height: 35,
-      bottom: -6,
-      borderBottomLeftRadius: 18,
-      right: -20
-    },
-  });
+  // const rightArrowOverlap = ({
+  //   rightArrowOverlap: {
+  //     position: 'absolute',
+  //     backgroundColor: '#eeeeee',
+  //     // backgroundColor:'green',
+  //     width: 20,
+  //     height: 35,
+  //     bottom: -6,
+  //     borderBottomLeftRadius: 18,
+  //     right: -20
+  //   },
+  // });
 
   return (
     <>
@@ -44,7 +45,7 @@ function MessageBubble({ messages }) {
           // borderRadius: 20,
         }}>
           <div style={{ fontSize: 16, color: '#fff' }} key={msgObj.messageID}>{msgObj.text}</div>
-              <div style={rightArrow}></div>
+              <div className={rightArrow}></div>
               <div style={rightArrowOverlap}></div>
         </div>
       ))}
