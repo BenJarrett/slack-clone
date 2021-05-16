@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import {
-  // Col,
-  Container
-  // Row
+  Col,
+  Container,
+  Row
 }
   from 'reactstrap';
 import 'firebase/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import './App.scss';
+import { getUsers, getConversationUsers } from '../helpers/data/usersData';
 import { getChannels } from '../helpers/data/channelsData';
-import getUsers from '../helpers/data/usersData';
 import Routes from '../helpers/data/Routes';
-// import NavBar from './components/NavBar';
+import NavBar from './components/NavBar';
 import { getMessages } from '../helpers/data/messagesData';
 
 function App() {
@@ -21,6 +21,9 @@ function App() {
   const [channels, setChannels] = useState([]);
   const [messages, setMessages] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
+  const [conversationUsers, setConversationUsers] = useState([]);
+  const [chosenUser, setChosenUser] = useState({});
+  const [chosenUserArray, setChosenUserArray] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -38,6 +41,9 @@ function App() {
           getChannels().then((resp) => setChannels(resp));
           getUsers().then((resp) => setUsersArray(resp));
           getMessages().then((resp) => console.warn(setMessages(resp)));
+          getConversationUsers().then((resp) => {
+            setConversationUsers(resp);
+          });
         }
       } else if (user || user === null) {
         setUser(false);
@@ -49,33 +55,34 @@ function App() {
     <>
       <Container fluid='true' className='App'>
        <Router>
-         {/* <NavBar/> */}
-           <SideBar
-               user={user}
-               channels={channels}
-               usersArray={usersArray}
-               setChannels={setChannels}
-               />
-           {/* <Row
-           className='d-flex justify-content-center align-items-center w-100 mt-5'
-           style={{ minHeight: '100%' }}
-           noGutters
-           > */}
-             {/* <Col >
-             </Col> */}
-             {/* <Col xs={8}> */}
+         <NavBar/>
+           <Row noGutters>
+             <Col>
+               <SideBar
+                  user={user}
+                  channels={channels}
+                  chosenUser={chosenUser}
+                  conversationUsers={conversationUsers}
+                  usersArray={usersArray}
+                  chosenUserArray={chosenUserArray}
+                  setChosenUserArray={setChosenUserArray}
+                  setChannels={setChannels}
+                   />
+             </Col>
+             <Col>
                <Routes
                   user={user}
                   usersArray={usersArray}
                   setUsersArray={setUsersArray}
                   messages={messages}
                   setMessages={setMessages}
+                  setChosenUser={setChosenUser}
+                  chosenUser={chosenUser}
+                  setConversationUsers={setConversationUsers}
                   setChannels={setChannels}
                 />
-             {/* </Col>
-             <Col>
-             </Col> */}
-           {/* </Row> */}
+             </Col>
+           </Row>
         </Router>
       </Container>
     </>

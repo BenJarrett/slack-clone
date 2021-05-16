@@ -4,24 +4,19 @@ import { Link } from 'react-router-dom';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
-import { signInUser, signOutUser } from '../../helpers/auth';
 import { deleteChannel } from '../../helpers/data/channelsData';
+import { signInUser, signOutUser } from '../../helpers/auth';
+import ConvUsers from './convUsers';
 import { deleteChannelUsers } from '../../helpers/data/channelUsersData';
 
-const getUsers = (usersArray) => (
-  <>
-    {
-      usersArray.map((user) => (
-        <NavItem key={user.uid}>
-          <NavLink >{user.fullName}</NavLink>
-        </NavItem>
-      ))
-    }
-  </>
-);
-
 function SideBar({
-  user, channels, usersArray, setChannels
+  user,
+  channels,
+  setChannels,
+  conversationUsers,
+  usersArray,
+  // setUsersArray
+
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -89,8 +84,12 @@ function SideBar({
       </NavItem>
       <h4>Names of Users</h4>
       <Nav vertical>
-         {user && getUsers(usersArray)}
-      </Nav>
+         {user && <ConvUsers
+         usersArray={usersArray}
+         user={user}
+         conversationUsers={conversationUsers}
+         />}
+       </Nav>
     </div>
   </>
   );
@@ -100,6 +99,7 @@ SideBar.propTypes = {
   user: PropTypes.any,
   channels: PropTypes.array,
   usersArray: PropTypes.array,
+  conversationUsers: PropTypes.array,
   setChannels: PropTypes.func
 };
 
