@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
-import { Col, Container, Row } from 'reactstrap';
+import {
+  // Col,
+  Container
+  // Row
+}
+  from 'reactstrap';
 import 'firebase/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
@@ -8,7 +13,7 @@ import './App.scss';
 import { getChannels } from '../helpers/data/channelsData';
 import getUsers from '../helpers/data/usersData';
 import Routes from '../helpers/data/Routes';
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
 import { getMessages } from '../helpers/data/messagesData';
 
 function App() {
@@ -44,18 +49,21 @@ function App() {
     <>
       <Container fluid='true' className='App'>
        <Router>
-               <SideBar
-                   user={user}
-                   channels={channels}
-                   usersArray={usersArray}
-                   setChannels={setChannels}
-                   />
-           <Row noGutters>
-             <Col >
-             </Col>
-             <Col xs={8}
-             >
-               <NavBar/>
+         {/* <NavBar/> */}
+           <SideBar
+               user={user}
+               channels={channels}
+               usersArray={usersArray}
+               setChannels={setChannels}
+               />
+           {/* <Row
+           className='d-flex justify-content-center align-items-center w-100 mt-5'
+           style={{ minHeight: '100%' }}
+           noGutters
+           > */}
+             {/* <Col >
+             </Col> */}
+             {/* <Col xs={8}> */}
                <Routes
                   user={user}
                   usersArray={usersArray}
@@ -64,10 +72,10 @@ function App() {
                   setMessages={setMessages}
                   setChannels={setChannels}
                 />
-             </Col>
+             {/* </Col>
              <Col>
-             </Col>
-           </Row>
+             </Col> */}
+           {/* </Row> */}
         </Router>
       </Container>
     </>

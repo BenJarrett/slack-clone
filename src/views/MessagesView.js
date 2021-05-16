@@ -16,22 +16,19 @@ function MessagesView({
 }) {
   return (
     <>
+    <div>
         <MessageBubble
           messages={messages}
         />
-        <div style={{
-          position: 'absolute',
-          bottom: 0
-        }}>
-        <MessagesForm
-       className={'msgFormStyle'}
-       setMessages={setMessages}
-       user={user}
-       usersArray={usersArray}
-       userUID={userUID}
-       text={text}
-       timestamp={timestamp}
-       />
+          <MessagesForm
+         className={'msgFormStyle'}
+         setMessages={setMessages}
+         user={user}
+         usersArray={usersArray}
+         userUID={userUID}
+         text={text}
+         timestamp={timestamp}
+         />
        </div>
       </>
   );

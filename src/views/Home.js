@@ -4,7 +4,7 @@ import MessagesView from './MessagesView';
 
 function Home({ setMessages, messages, user }) {
   return (
-    <div className='messagesViewContainer'>
+    <div>
      {<MessagesView
         messages={messages}
         setMessages={setMessages}
