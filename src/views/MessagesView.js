@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, FormGroup, Input } from 'reactstrap';
+// import { View, Text } from 'reactstrap';
 import MessagesForm from '../App/components/MessagesForm';
+import MessageBubble from './MessageBubble';
 
 function MessagesView({
   user,
@@ -13,20 +14,13 @@ function MessagesView({
   messages
   // message
 }) {
-  // getMessages(user).then((messagesArray));
-  // getMessages(user).then((messagesArray) => setMessages(messagesArray));
   return (
     <>
       <div className='messages-container'>
-        <h3>hello</h3>
-        {messages.map((msgObj) => (
-              <Form key={msgObj.messageID}>
-                <FormGroup>
-                  <Input type="textarea" name="text" id="exampleText"/>
-                    {`${msgObj.text} ${msgObj.timestamp}`}
-                </FormGroup>
-              </Form>
-        ))}
+            <MessageBubble
+              messages={messages}
+            />
+      </div>
         {<MessagesForm
         setMessages={setMessages}
         user={user}
@@ -35,7 +29,6 @@ function MessagesView({
         text={text}
         timestamp={timestamp}
       />}
-      </div>
     </>
   );
 }

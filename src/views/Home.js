@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-// import MessagesForm from '../App/components/MessagesForm';
 import MessagesView from './MessagesView';
 
 function Home({ setMessages, messages, user }) {
