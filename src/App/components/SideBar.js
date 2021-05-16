@@ -7,6 +7,7 @@ import {
 import { deleteChannel } from '../../helpers/data/channelsData';
 import { signInUser, signOutUser } from '../../helpers/auth';
 import ConvUsers from './convUsers';
+import { deleteChannelUsers } from '../../helpers/data/channelUsersData';
 
 function SideBar({
   user,
@@ -21,6 +22,7 @@ function SideBar({
   const toggle = () => setIsOpen(!isOpen);
   const getChannelLinks = () => {
     const handleButtonClick = (channelID) => {
+      deleteChannelUsers(channelID);
       deleteChannel(channelID).then(setChannels);
     };
     return (
@@ -28,7 +30,7 @@ function SideBar({
         {
           channels.map((channelInfo) => (
             <NavItem key={channelInfo.channelID}>
-              <NavLink >{channelInfo.channelName}
+              <NavLink >{channelInfo.isChannelPublic ? 'public' : 'Private'} channel<br></br>{channelInfo.channelName}
                <Button style={{
                  backgroundColor: 'transparent',
                  borderWidth: '0rem'
@@ -69,6 +71,9 @@ function SideBar({
             }
           </div>
         }
+        </NavItem>
+        <NavItem>
+          <Link className="nav-link" to="/add-Channel">Add Channels</Link>
         </NavItem>
         {user && getChannelLinks()}
       </Nav>

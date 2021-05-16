@@ -66,12 +66,12 @@ function App() {
              <Col>
                <Routes
                   user={user}
-                  channels={channels}
                   usersArray={usersArray}
                   setUsersArray={setUsersArray}
                   setChosenUser={setChosenUser}
                   chosenUser={chosenUser}
                   setConversationUsers={setConversationUsers}
+                  setChannels={setChannels}
                 />
              </Col>
              <Col>

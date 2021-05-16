@@ -7,7 +7,7 @@ import DirectMessage from '../../views/DirectMessage';
 import Conversation from '../../views/Conversation';
 
 export default function Routes({
-  user, channels, usersArray, setUsersArray, setChosenUser, chosenUser, setConversationUsers
+  user, usersArray, setChosenUser, chosenUser, setConversationUsers, setChannels,
 }) {
   return (
     <div>
@@ -34,9 +34,9 @@ export default function Routes({
            exact
            path='/add-Channel'
            component={() => <AddChannel
-                              channels={channels}
+                              user={user}
                               usersArray={usersArray}
-                              setUsersArray={setUsersArray}
+                              setChannels={setChannels}
                             /> }
            />
       </Switch>
@@ -46,10 +46,10 @@ export default function Routes({
 
 Routes.propTypes = {
   user: PropTypes.any,
-  channels: PropTypes.array.isRequired,
   usersArray: PropTypes.array.isRequired,
   setUsersArray: PropTypes.func,
   chosenUser: PropTypes.object,
   setChosenUser: PropTypes.func,
-  setConversationUsers: PropTypes.func
+  setConversationUsers: PropTypes.func,
+  setChannels: PropTypes.func.isRequired
 };
