@@ -1,6 +1,6 @@
-// .App {
-
-// }
+.App {
+text-align: center;
+}
 
 .msgFormStyle {
   position: 'absolute';
@@ -13,27 +13,7 @@
 .messagesViewContainer {
   width: 100%;
 }
-// .rightArrow {
-//   position: 'absolute';
-//   background-color: '#0078fe';
-//   // backgroundColor:'red';
-//   width: 20;
-//   height: 25;
-//   bottom: 0;
-//   border-bottom-left-radius: 20;
-//   right: -10;
-// }
 
-// .rightArrowOverlap {
-//   position: 'absolute';
-//   background-color: #eeeeee;
-//   // backgroundColor:'green',
-//   width: 20;
-//   height: 35;
-//   bottom: -6;
-//   border-bottom-left-radius: 18;
-//   right: -20
-// }
 
 // .app-container {
 //   background-color: #282c34;
@@ -64,43 +44,4 @@
 //   font-size: calc(10px + 2vmin);
 //   color: white;
 //   margin: .5em;
-// }
-
-// .App {
-//   text-align: center;
-// }
-
-// .App-logo {
-//   height: 40vmin;
-//   pointer-events: none;
-// }
-
-// @media (prefers-reduced-motion: no-preference) {
-//   .App-logo {
-//     animation: App-logo-spin infinite 20s linear;
-//   }
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
 // }

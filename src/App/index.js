@@ -57,7 +57,7 @@ function App() {
        <Router>
          <NavBar/>
            <Row noGutters>
-             <Col>
+             <Col xs='3'>
                <SideBar
                   user={user}
                   channels={channels}
@@ -69,7 +69,7 @@ function App() {
                   setChannels={setChannels}
                    />
              </Col>
-             <Col>
+             <Col xs='6'>
                <Routes
                   user={user}
                   usersArray={usersArray}
@@ -82,6 +82,7 @@ function App() {
                   setChannels={setChannels}
                 />
              </Col>
+             <Col xs='1'></Col>
            </Row>
         </Router>
       </Container>
