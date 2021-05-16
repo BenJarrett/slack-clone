@@ -15,6 +15,7 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
       receiver: { ...tempReceiver }
     };
     conversationUsersAll.push(obj);
+
     if (tempSender.uid !== user.uid) {
       filteredConvserstionUsersAll.push(tempSender);
     } else if (tempReceiver.uid !== user.uid) {
