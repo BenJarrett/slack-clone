@@ -5,8 +5,8 @@ import 'firebase/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import './App.scss';
+import { getUsers, getConversationUsers } from '../helpers/data/usersData';
 import { getChannels } from '../helpers/data/channelsData';
-import getUsers from '../helpers/data/usersData';
 import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
 
@@ -14,6 +14,9 @@ function App() {
   const [user, setUser] = useState(null);
   const [channels, setChannels] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
+  const [conversationUsers, setConversationUsers] = useState([]);
+  const [chosenUser, setChosenUser] = useState({});
+  const [chosenUserArray, setChosenUserArray] = useState([]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -29,7 +32,12 @@ function App() {
         setUsersArray(usersArray);
         if (authed !== null) {
           getChannels().then((resp) => setChannels(resp));
-          getUsers().then((resp) => setUsersArray(resp));
+          getUsers().then((resp) => {
+            setUsersArray(resp);
+          });
+          getConversationUsers().then((resp) => {
+            setConversationUsers(resp);
+          });
         }
       } else if (user || user === null) {
         setUser(false);
@@ -45,10 +53,14 @@ function App() {
            <Row noGutters>
              <Col>
                <SideBar
-                   user={user}
-                   channels={channels}
-                   usersArray={usersArray}
-                   setChannels={setChannels}
+                  user={user}
+                  channels={channels}
+                  chosenUser={chosenUser}
+                  conversationUsers={conversationUsers}
+                  usersArray={usersArray}
+                  chosenUserArray={chosenUserArray}
+                  setChosenUserArray={setChosenUserArray}
+                  setChannels={setChannels}
                    />
              </Col>
              <Col>
@@ -56,6 +68,9 @@ function App() {
                   user={user}
                   usersArray={usersArray}
                   setUsersArray={setUsersArray}
+                  setChosenUser={setChosenUser}
+                  chosenUser={chosenUser}
+                  setConversationUsers={setConversationUsers}
                   setChannels={setChannels}
                 />
              </Col>

@@ -9,15 +9,24 @@ const getUsers = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// const getDirectMessageUsers = () => new Promise((resolve, reject) => {
-//   axios(`${dbURL}/directMessageUsers.json`)
-//     .then((response) => {
-//       if (response.data) {
-//         resolve(Object.values(response.data));
-//       } else {
-//         resolve([]);
-//       }
-//     }).catch((error) => reject(error));
-// });
+const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/users/${firebaseKey}.json`)
+    .then((response) => resolve(response))
+    .catch((error) => reject(error));
+});
 
-export default getUsers;
+const getConversationUsers = () => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/conversationUsers.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+const getChosenUser = (fullName) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/users.json?orderBy="fullName"&equalTo="${fullName}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+export {
+  getUsers, getConversationUsers, getSingleUser, getChosenUser
+};

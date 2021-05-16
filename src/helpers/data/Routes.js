@@ -4,9 +4,10 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../../views/Home';
 import AddChannel from '../../views/AddChannel';
 import DirectMessage from '../../views/DirectMessage';
+import Conversation from '../../views/Conversation';
 
 export default function Routes({
-  user, usersArray, setChannels,
+  user, usersArray, setChosenUser, chosenUser, setConversationUsers, setChannels,
 }) {
   return (
     <div>
@@ -19,8 +20,15 @@ export default function Routes({
          <Route
           exact path='/direct-messages'
           component={() => <DirectMessage
+          chosenUser={chosenUser}
+          setChosenUser={setChosenUser}
           user={user}
-          usersArray={usersArray}/>}
+          usersArray={usersArray}
+          setConversationUsers={setConversationUsers}/>}
+         />
+         <Route
+         exact path='/direct-messages/:firebaseKey'
+         component={() => <Conversation/>}
          />
          <Route
            exact
@@ -39,5 +47,9 @@ export default function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   usersArray: PropTypes.array.isRequired,
+  setUsersArray: PropTypes.func,
+  chosenUser: PropTypes.object,
+  setChosenUser: PropTypes.func,
+  setConversationUsers: PropTypes.func,
   setChannels: PropTypes.func.isRequired
 };

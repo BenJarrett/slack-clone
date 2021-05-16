@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Form, Input, FormGroup, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { createConversation } from '../../helpers/data/directMessageData';
-// import Conversation from '../../views/Conversation';
+import { getConversationUsers } from '../../helpers/data/usersData';
 
 const DirectMessageForm = ({
   formTitle,
   user,
-  usersArray
+  usersArray,
+  chosenUser,
+  setChosenUser,
+  setConversationUsers
 }) => {
-  const [chosenUser, setChosenUser] = useState('');
-
   const handleInputChange = (e) => {
-    setChosenUser(e.target.value);
+    const arrValue = usersArray.find(({ fullName }) => fullName === e.target.value);
+    setChosenUser(arrValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(chosenUser);
     const obj = {
-      senderUID: user.fullName,
-      receiverUID: chosenUser
+      senderUID: user.uid,
+      receiverUID: chosenUser.uid
     };
-    createConversation(obj).then((response) => console.warn(response));
+    createConversation(obj).then(() => getConversationUsers().then((response) => setConversationUsers(response)));
   };
 
   return (
@@ -33,7 +34,7 @@ const DirectMessageForm = ({
         <Form id='newDMForm' autoComplete='off'>
           <h3>{formTitle}</h3>
           <FormGroup>
-             <Input type="select" name="fullName" id="exampleSelect" value={chosenUser} onChange={handleInputChange}>
+             <Input type="select" name="fullName" id="exampleSelect" value={chosenUser.fullName} onChange={handleInputChange}>
               {
                 usersArray.map((item) => <option key={item.uid}>{item.fullName}</option>)
               }
@@ -49,7 +50,10 @@ const DirectMessageForm = ({
 DirectMessageForm.propTypes = {
   formTitle: PropTypes.string.isRequired,
   usersArray: PropTypes.array,
-  user: PropTypes.any
+  user: PropTypes.any,
+  chosenUser: PropTypes.object.isRequired,
+  setChosenUser: PropTypes.func.isRequired,
+  setConversationUsers: PropTypes.func
 };
 
 export default DirectMessageForm;
