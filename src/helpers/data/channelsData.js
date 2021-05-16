@@ -1,13 +1,18 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
-import createChannelUsers from './channelUsersData';
+import { createChannelUsers } from './channelUsersData';
 
 const dbURL = firebaseConfig.databaseURL;
 
 const getChannels = () => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/channels.json`)
-    .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error));
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    }).catch((error) => reject(error));
 });
 
 const createChannel = (channelObj, channelUsers) => new Promise((resolve, reject) => {
@@ -20,7 +25,7 @@ const createChannel = (channelObj, channelUsers) => new Promise((resolve, reject
             const obj = { userUID: channelUser.uid, channelID: response.data.name };
             createChannelUsers(obj);
           });
-          getChannels().then((message) => resolve(message));
+          getChannels().then(resolve);
         }).catch((error) => reject(error));
     });
 });

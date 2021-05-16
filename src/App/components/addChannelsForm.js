@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Select from 'react-select';
 import {
   FormGroup, Form, Label, Button, Input, Col
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { createChannel, getChannels } from '../../helpers/data/channelsData';
+import { createChannel } from '../../helpers/data/channelsData';
 
 const AddChannelForm = ({
   formTitle,
@@ -19,11 +20,13 @@ const AddChannelForm = ({
     isChannelPublic: false,
     creatorID: user ? user.uid : '',
   });
+  const history = useHistory();
   let arrayOfUsersForNewChannel = [];
   const arrayOfUsersForNewChannel1 = [];
+  const usersArrayMinusCurrentUser = usersArray.filter((currUser) => currUser.uid !== user.uid);
 
   // usersArryForMap
-  const usersArryForMap = usersArray.map((item) => {
+  const usersArryForMap = usersArrayMinusCurrentUser.map((item) => {
     const obj = { value: item.uid, label: item.fullName };
     return obj;
   });
@@ -35,14 +38,17 @@ const AddChannelForm = ({
     }));
   };
 
-  const handleSubmit = () => {
-    // e.prevent.Default();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     tempNames.forEach((selectedUser) => {
-      arrayOfUsersForNewChannel = usersArray.filter((currUser) => currUser.uid === selectedUser.value);
-      arrayOfUsersForNewChannel1.push(...arrayOfUsersForNewChannel);
+      arrayOfUsersForNewChannel = usersArrayMinusCurrentUser.filter((currUser) => currUser.uid === selectedUser.value);
+      if (selectedUser.value !== user.uid) {
+        arrayOfUsersForNewChannel1.push(...arrayOfUsersForNewChannel);
+      }
     });
-    createChannel(channelObj, arrayOfUsersForNewChannel1);
-    getChannels().then((resp) => setChannels(resp));
+    arrayOfUsersForNewChannel1.push(usersArray.filter((currUser) => currUser.uid === user.uid));
+    createChannel(channelObj, arrayOfUsersForNewChannel1).then(setChannels);
+    history.push('/add-Channel');
   };
 
   const handleSelectedUsers = (e) => {

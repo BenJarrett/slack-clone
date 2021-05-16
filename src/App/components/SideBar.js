@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
 import { deleteChannel } from '../../helpers/data/channelsData';
+import { deleteChannelUsers } from '../../helpers/data/channelUsersData';
 
 const getUsers = (usersArray) => (
   <>
@@ -26,6 +27,7 @@ function SideBar({
   const toggle = () => setIsOpen(!isOpen);
   const getChannelLinks = () => {
     const handleButtonClick = (channelID) => {
+      deleteChannelUsers(channelID);
       deleteChannel(channelID).then(setChannels);
     };
     return (
@@ -33,7 +35,7 @@ function SideBar({
         {
           channels.map((channelInfo) => (
             <NavItem key={channelInfo.channelID}>
-              <NavLink >{channelInfo.channelName}
+              <NavLink >{channelInfo.isChannelPublic ? 'public' : 'Private'} channel<br></br>{channelInfo.channelName}
                <Button style={{
                  backgroundColor: 'transparent',
                  borderWidth: '0rem'

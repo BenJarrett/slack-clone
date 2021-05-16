@@ -8,8 +8,30 @@ const createChannelUsers = (channelUserObject) => new Promise((resolve, reject) 
     .then((response) => {
       const body = { channelUsersID: response.data.name };
       axios.patch(`${dbURL}/channelUsers/${response.data.name}.json`, body)
+        .then(() => resolve())
         .catch((error) => reject(error));
     });
 });
 
-export default createChannelUsers;
+const getChannelUsers = (channelID) => new Promise((resolve, reject) => {
+  console.warn(`${dbURL}/channelUsers.json?orderBy="channelID"&equalTo="${channelID}"`);
+  axios.get(`${dbURL}/channelUsers.json?orderBy="channelID"&equalTo="${channelID}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+const deleteChannelUsers = (channelID) => new Promise((resolve, reject) => {
+  getChannelUsers(channelID).then((response) => {
+    response.forEach((channelUser) => {
+      axios.delete(`${dbURL}/channelUsers/${channelUser.channelUsersID}.json`)
+        .catch((error) => reject(error));
+    });
+  });
+});
+
+// const deleteChannelUsers = (channelID) => new Promise((resolve, reject) => {
+//   axios.delete(`${dbURL}/channelUsers.json?orderBy="channelID"&equalTo="${channelID}"`)
+//     .catch((error) => reject(error));
+// });
+
+export { createChannelUsers, deleteChannelUsers };
