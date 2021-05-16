@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input, Button, InputGroup, InputGroupAddon, Form,
 } from 'reactstrap';
-// import { createMessage } from '../../helpers/data/messagesData';
+import { createMessage } from '../../helpers/data/messagesData';
 
 const MessagesForm = ({
-  // setMessages,
+  setMessages,
   user,
   messageID,
-  // userUID,
   text,
 }) => {
   const GetCurrentDate = () => {
@@ -45,13 +44,11 @@ const MessagesForm = ({
       ...prevState,
       timestamp: GetCurrentDate()
     }));
-    // console.warn(GetCurrentDate());
-    console.warn(message);
-    // createMessage(message);
-    // .then((messagesArray) => setMessages(messagesArray));
+    createMessage(message)
+      .then((messagesArray) => setMessages(messagesArray));
 
     setMessage({
-      messageID: '',
+      messageID: null,
       userUID: '',
       text: '',
       timestamp: '',
@@ -89,7 +86,6 @@ MessagesForm.propTypes = {
   userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
-  // timestamp: PropTypes.string
 };
 
 export default MessagesForm;
