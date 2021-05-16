@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input, Button, InputGroup, InputGroupAddon, Form,
 } from 'reactstrap';
-import { createMessage } from '../../helpers/data/messagesData';
+// import { createMessage } from '../../helpers/data/messagesData';
 
 const MessagesForm = ({
   // setMessages,
@@ -20,7 +20,10 @@ const MessagesForm = ({
     const hours = getDateNow.getHours().toString().padStart(2, '0');
     const minutes = getDateNow.getMinutes().toString().padStart(2, '0');
     const seconds = getDateNow.getSeconds().toString().padStart(2, '0');
-    return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+    const fullDateTime = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+    const splitDateTime = fullDateTime.split(' ');
+    const timeOnly = splitDateTime[[1]];
+    return timeOnly;
   };
 
   const [message, setMessage] = useState({
@@ -44,7 +47,7 @@ const MessagesForm = ({
     }));
     // console.warn(GetCurrentDate());
     console.warn(message);
-    createMessage(message);
+    // createMessage(message);
     // .then((messagesArray) => setMessages(messagesArray));
 
     setMessage({
