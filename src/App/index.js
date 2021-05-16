@@ -54,9 +54,9 @@ function App() {
              <Col>
                <Routes
                   user={user}
-                  channels={channels}
                   usersArray={usersArray}
                   setUsersArray={setUsersArray}
+                  setChannels={setChannels}
                 />
              </Col>
              <Col>

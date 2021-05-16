@@ -1,24 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddChannelForm from '../helpers/addChannelsForm';
+import AddChannelForm from '../App/components/addChannelsForm';
 
 function AddChannel({
-  usersArray, setUsersArray
+  user, usersArray, setChannels
 }) {
   return (
     <>
       <AddChannelForm
         formTitle='Add a Channel'
+        user={user}
         usersArray={usersArray}
-        setUsersArray={setUsersArray}
+        setChannels={setChannels}
       />
     </>
   );
 }
 
 AddChannel.propTypes = {
+  user: PropTypes.any,
   usersArray: PropTypes.array.isRequired,
-  setUsersArray: PropTypes.func.isRequired
+  setChannels: PropTypes.func.isRequired
 };
 
 export default AddChannel;
