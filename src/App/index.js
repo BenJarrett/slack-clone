@@ -44,18 +44,18 @@ function App() {
     <>
       <Container fluid='true' className='App'>
        <Router>
-         <NavBar/>
-           <Row noGutters>
                <SideBar
                    user={user}
                    channels={channels}
                    usersArray={usersArray}
                    setChannels={setChannels}
                    />
+           <Row noGutters>
              <Col >
              </Col>
              <Col xs={8}
              >
+               <NavBar/>
                <Routes
                   user={user}
                   channels={channels}
