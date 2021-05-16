@@ -58,7 +58,7 @@ const MessagesForm = ({
   <div>
     <Form>
       <FormGroup id='message-form'>
-            <Input type="textarea" name="text" id="exampleText" />
+            {/* <Input type="textarea" name="text" id="exampleText" /> */}
       <InputGroup>
         <Input
           name="text"
@@ -81,6 +81,7 @@ const MessagesForm = ({
 };
 
 MessagesForm.propTypes = {
+  message: PropTypes.object,
   setMessages: PropTypes.func,
   user: PropTypes.any,
   userUID: PropTypes.any,

@@ -11,7 +11,8 @@ function Home({ setMessages, messages, user }) {
      {<MessagesView
         messages={messages}
         setMessages={setMessages}
-        user={user}/>}
+        user={user}
+     />}
     </div>
   );
 }
