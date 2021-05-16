@@ -10,16 +10,19 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
   conversationUsers.forEach((userID) => {
     tempSender = usersArray.find(({ uid }) => uid === userID.senderUID);
     tempReceiver = usersArray.find(({ uid }) => uid === userID.receiverUID);
-    const obj = {
-      sender: { ...tempSender },
-      receiver: { ...tempReceiver }
-    };
-    conversationUsersAll.push(obj);
 
-    if (tempSender.uid !== user.uid) {
-      filteredConvserstionUsersAll.push(tempSender);
-    } else if (tempReceiver.uid !== user.uid) {
-      filteredConvserstionUsersAll.push(tempReceiver);
+    if (tempSender && tempReceiver) {
+      const obj = {
+        sender: { ...tempSender },
+        receiver: { ...tempReceiver }
+      };
+      conversationUsersAll.push(obj);
+
+      if (tempSender.uid !== user.uid) {
+        filteredConvserstionUsersAll.push(tempSender);
+      } else if (tempReceiver.uid !== user.uid) {
+        filteredConvserstionUsersAll.push(tempReceiver);
+      }
     }
   });
 
@@ -28,13 +31,15 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
     {
       <div>
           {
-            filteredConvserstionUsersAll.map((item) => (
-            <NavItem key={item.uid}>
-              <NavLink >
-              {item.fullName}
-            </NavLink>
-            </NavItem>
-            ))
+            filteredConvserstionUsersAll !== []
+              ? filteredConvserstionUsersAll.map((item) => (
+              <NavItem key={item.uid}>
+                <NavLink >
+                {item.fullName}
+              </NavLink>
+              </NavItem>
+              ))
+              : ''
           }
       </div>
     }
