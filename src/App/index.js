@@ -58,11 +58,11 @@ function App() {
                <NavBar/>
                <Routes
                   user={user}
-                  channels={channels}
                   usersArray={usersArray}
                   setUsersArray={setUsersArray}
                   messages={messages}
                   setMessages={setMessages}
+                  setChannels={setChannels}
                 />
              </Col>
              <Col>
