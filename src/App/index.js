@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
-import { Col, Container, Row } from 'reactstrap';
+import {
+  Col,
+  Container,
+  Row
+}
+  from 'reactstrap';
 import 'firebase/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
@@ -9,10 +14,12 @@ import { getUsers, getConversationUsers } from '../helpers/data/usersData';
 import { getChannels } from '../helpers/data/channelsData';
 import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
+import { getMessages } from '../helpers/data/messagesData';
 
 function App() {
   const [user, setUser] = useState(null);
   const [channels, setChannels] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
   const [conversationUsers, setConversationUsers] = useState([]);
   const [chosenUser, setChosenUser] = useState({});
@@ -32,9 +39,8 @@ function App() {
         setUsersArray(usersArray);
         if (authed !== null) {
           getChannels().then((resp) => setChannels(resp));
-          getUsers().then((resp) => {
-            setUsersArray(resp);
-          });
+          getUsers().then((resp) => setUsersArray(resp));
+          getMessages().then((resp) => console.warn(setMessages(resp)));
           getConversationUsers().then((resp) => {
             setConversationUsers(resp);
           });
@@ -51,7 +57,7 @@ function App() {
        <Router>
          <NavBar/>
            <Row noGutters>
-             <Col>
+             <Col xs='3'>
                <SideBar
                   user={user}
                   channels={channels}
@@ -63,19 +69,20 @@ function App() {
                   setChannels={setChannels}
                    />
              </Col>
-             <Col>
+             <Col xs='6'>
                <Routes
                   user={user}
                   usersArray={usersArray}
                   setUsersArray={setUsersArray}
+                  messages={messages}
+                  setMessages={setMessages}
                   setChosenUser={setChosenUser}
                   chosenUser={chosenUser}
                   setConversationUsers={setConversationUsers}
                   setChannels={setChannels}
                 />
              </Col>
-             <Col>
-             </Col>
+             <Col xs='1'></Col>
            </Row>
         </Router>
       </Container>

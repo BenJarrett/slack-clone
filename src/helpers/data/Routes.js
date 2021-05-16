@@ -7,15 +7,20 @@ import DirectMessage from '../../views/DirectMessage';
 import Conversation from '../../views/Conversation';
 
 export default function Routes({
-  user, usersArray, setChosenUser, chosenUser, setConversationUsers, setChannels,
+  user, usersArray, messages, setMessages, setChosenUser, chosenUser, setConversationUsers, setChannels,
 }) {
   return (
     <div>
       <Switch>
          <Route
-           exact
-           path='/'
-           component={Home}
+           exact path='/'
+           component={() => <Home
+            className='messagesViewContainer'
+            messages={messages}
+            setMessages={setMessages}
+            user={user}
+            usersArray={usersArray}
+            />}
           />
          <Route
           exact path='/direct-messages'
@@ -47,6 +52,8 @@ export default function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   usersArray: PropTypes.array.isRequired,
+  messages: PropTypes.array,
+  setMessages: PropTypes.func.isRequired,
   setUsersArray: PropTypes.func,
   chosenUser: PropTypes.object,
   setChosenUser: PropTypes.func,

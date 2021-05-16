@@ -1,28 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import getMessages from '../helpers/data/messagesData';
+// import { View, Text } from 'reactstrap';
+import MessagesForm from '../App/components/MessagesForm';
+import MessageBubble from './MessageBubble';
 
-function MessagesView({ user }) {
-  const [messages, setMessages] = useState([]);
-
-  getMessages(user).then((messagesArray) => setMessages(messagesArray));
-
+function MessagesView({
+  user,
+  usersArray,
+  setMessages,
+  userUID,
+  text,
+  timestamp,
+  messages
+  // message
+}) {
   return (
     <>
-    {
-      messages.map((messageObject) => (
-        <div key={messageObject.messageID}>
-          {messageObject.text}
-          {messageObject.timeStamp}
-        </div>
-      ))
-    }
-    </>
+    <div>
+        <MessageBubble
+          messages={messages}
+        />
+          <MessagesForm
+         className={'msgFormStyle'}
+         setMessages={setMessages}
+         user={user}
+         usersArray={usersArray}
+         userUID={userUID}
+         text={text}
+         timestamp={timestamp}
+         />
+       </div>
+      </>
   );
 }
 
 MessagesView.propTypes = {
-  user: PropTypes.any
+  messages: PropTypes.array,
+  // message: PropTypes.object,
+  user: PropTypes.any,
+  usersArray: PropTypes.array,
+  setMessages: PropTypes.func,
+  userUID: PropTypes.string,
+  messageID: PropTypes.string,
+  text: PropTypes.string,
+  timestamp: PropTypes.instanceOf(Date)
 };
 
 export default MessagesView;
