@@ -25,4 +25,10 @@ const createMessage = (msgObj) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export { getMessages, createMessage };
+const updateMessage = (msgObj, messageID) => new Promise((resolve, reject) => {
+  axios.patch(`${dbURL}/messages/${messageID}.json`, msgObj)
+    .then(() => getMessages().then(resolve))
+    .catch((error) => reject(error));
+});
+
+export { getMessages, createMessage, updateMessage };

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input, Button, InputGroup, InputGroupAddon, Form,
 } from 'reactstrap';
-import { createMessage } from '../../helpers/data/messagesData';
+import { createMessage, updateMessage } from '../../helpers/data/messagesData';
 
 const MessagesForm = ({
   setMessages,
+  editMessage,
   user,
   messageID,
   text,
@@ -32,6 +33,8 @@ const MessagesForm = ({
     timestamp: GetCurrentDate()
   });
 
+  // const [editMessage, setEditMessage] = useState(false);
+
   const handleInputChange = (e) => {
     setMessage((prevState) => ({
       ...prevState,
@@ -40,13 +43,21 @@ const MessagesForm = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMessage((prevState) => ({
-      ...prevState,
-      timestamp: GetCurrentDate()
-    }));
-    createMessage(message)
-      .then((messagesArray) => setMessages(messagesArray));
+    // setMessage((prevState) => ({
+    //   ...prevState,
+    //   timestamp: GetCurrentDate()
+    // }));
+    if (message.messageID) {
+      updateMessage(message, messageID).then((messagesArray) => setMessages(messagesArray));
 
+      setMessage((prevState) => ({
+        ...prevState,
+        timestamp: GetCurrentDate()
+      }));
+      // timestamp: GetCurrentDate() what to do with timestamp?
+    } else {
+      createMessage(message).then((messagesArray) => setMessages(messagesArray));
+    }
     setMessage({
       messageID: null,
       userUID: '',
@@ -54,6 +65,7 @@ const MessagesForm = ({
       timestamp: '',
     });
   };
+
   return (
   <div>
     <Form id='message-form'>
@@ -62,14 +74,16 @@ const MessagesForm = ({
         <Input
           name="text"
           type="text"
-          placeholder="Send a Message"
+          placeholder={editMessage ? 'Send a Message' : 'Edit your Message'}
           value={message.text}
           onChange={handleInputChange}
           />
+          {/* {editMessage ? editMessage && message.text : message.text} */}
           <InputGroupAddon addonType="append">
             <Button color="success"
             onClick={handleSubmit}
-            >Send
+            >
+              {editMessage ? 'Send' : 'Edit'}
           </Button>
           </InputGroupAddon>
         </InputGroup>
@@ -86,6 +100,8 @@ MessagesForm.propTypes = {
   userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
+  editMessage: PropTypes.bool
+
 };
 
 export default MessagesForm;
