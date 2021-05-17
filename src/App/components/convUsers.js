@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavItem, NavLink } from 'reactstrap';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function ConvUsers({ usersArray, conversationUsers, user }) {
+  const history = useHistory();
+
+  const goToConversationView = (firebaseKey) => {
+    history.push(`direct-messages/${firebaseKey}`);
+  };
+
   let tempSender = {};
   let tempReceiver = {};
   const conversationUsersAll = [];
@@ -17,11 +24,10 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
         receiver: { ...tempReceiver }
       };
       conversationUsersAll.push(obj);
-
       if (tempSender.uid !== user.uid) {
-        filteredConvserstionUsersAll.push(tempSender);
+        filteredConvserstionUsersAll.push({ ...tempSender, conversationID: userID.conversationUsersID });
       } else if (tempReceiver.uid !== user.uid) {
-        filteredConvserstionUsersAll.push(tempReceiver);
+        filteredConvserstionUsersAll.push({ ...tempReceiver, conversationID: userID.conversationUsersID });
       }
     }
   });
@@ -34,7 +40,7 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
             filteredConvserstionUsersAll !== []
               ? filteredConvserstionUsersAll.map((item) => (
               <NavItem key={item.uid}>
-                <NavLink >
+                <NavLink onClick={() => (goToConversationView(item.conversationID))}>
                 {item.fullName}
               </NavLink>
               </NavItem>
