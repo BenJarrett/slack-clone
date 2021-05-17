@@ -25,4 +25,10 @@ const createMessage = (msgObj) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export { getMessages, createMessage };
+const deleteMessage = (messageID) => new Promise((resolve, reject) => {
+  axios.delete(`${dbURL}/messages/${messageID}.json`)
+    .then(() => getMessages().then((messageArray) => resolve(messageArray)))
+    .catch((error) => reject(error));
+});
+
+export { getMessages, createMessage, deleteMessage };
