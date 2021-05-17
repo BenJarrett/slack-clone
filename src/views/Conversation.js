@@ -7,8 +7,10 @@ import MessageBubble from './MessageBubble';
 function Conversation() {
   const [convMessages, setConvMessages] = useState([]);
   const conversationUsersID = useParams();
+
   useEffect(() => {
     console.warn('convID', conversationUsersID);
+    debugger;
     getConversationMessages(conversationUsersID.firebaseKey).then((response) => {
       console.warn('getConversationMessages', response);
       setConvMessages(response.singleMessage);
