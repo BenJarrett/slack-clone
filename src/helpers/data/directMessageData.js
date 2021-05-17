@@ -1,5 +1,6 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
+import { getSingleMessage } from './messagesData';
 // import { getSingleMessage } from './messagesData';
 // import { getSingleUser } from './usersData';
 
@@ -41,12 +42,25 @@ const getConversationMessages = (conversationUsersID) => new Promise((resolve, r
   axios.get(`${dbUrl}/conversationMessages.json?orderBy="conversationUsersID"&equalTo="${conversationUsersID}"`)
     .then((response) => {
       if (response.data) {
-        resolve(Object.values(response.data));
+        const convMessages = Object.values(response.data);
+        const singleMessage = [];
+        convMessages.forEach((item) => {
+          getSingleMessage(item.messageID).then((resp) => {
+            singleMessage.push(resp);
+          });
+        });
+        Promise.all([convMessages, singleMessage])
+          .then(([convMessagesResp, singleMessageResp]) => resolve({ convMessages: convMessagesResp, singleMessage: singleMessageResp }))
+          .catch((error) => reject(error));
       } else {
         resolve([]);
       }
     }).catch((error) => reject(error));
 });
+
+// const getAllConversationMessages = (conversationUsersID) => new Promise((resolve, reject) => {
+//   const conversationMessages = getConversationMessages(conversationUsersID)
+// })
 
 export {
   getConversations, createConversation, getSingleConversation, getConversationMessages
