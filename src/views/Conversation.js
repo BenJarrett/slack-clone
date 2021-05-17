@@ -10,7 +10,6 @@ function Conversation() {
 
   useEffect(() => {
     console.warn('convID', conversationUsersID);
-    debugger;
     getConversationMessages(conversationUsersID.firebaseKey).then((response) => {
       console.warn('getConversationMessages', response);
       setConvMessages(response.singleMessage);
