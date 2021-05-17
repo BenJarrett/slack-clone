@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
@@ -19,18 +19,23 @@ function SideBar({
 
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory();
   const toggle = () => setIsOpen(!isOpen);
   const getChannelLinks = () => {
     const handleButtonClick = (channelID) => {
       deleteChannelUsers(channelID);
       deleteChannel(channelID).then(setChannels);
     };
+    const goToChannel = (channelID) => {
+      history.push(`/showChannelMessages/${channelID}`);
+    };
+
     return (
       <>
         {
           channels.map((channelInfo) => (
             <NavItem key={channelInfo.channelID}>
-              <NavLink >{channelInfo.isChannelPublic ? 'public' : 'Private'} channel<br></br>{channelInfo.channelName}
+              <NavLink onClick={() => goToChannel(channelInfo.channelID)} >{channelInfo.isChannelPublic ? 'public' : 'Private'} channel<br></br>{channelInfo.channelName}
                <Button style={{
                  backgroundColor: 'transparent',
                  borderWidth: '0rem'

@@ -10,6 +10,7 @@ const MessagesForm = ({
   user,
   messageID,
   text,
+  channelID,
 }) => {
   const GetCurrentDate = () => {
     const getDateNow = new Date();
@@ -44,7 +45,7 @@ const MessagesForm = ({
       ...prevState,
       timestamp: GetCurrentDate()
     }));
-    createMessage(message)
+    createMessage(message, channelID)
       .then((messagesArray) => setMessages(messagesArray));
 
     setMessage({
@@ -86,6 +87,7 @@ MessagesForm.propTypes = {
   userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
+  channelID: PropTypes.string,
 };
 
 export default MessagesForm;

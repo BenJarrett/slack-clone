@@ -5,6 +5,7 @@ import Home from '../../views/Home';
 import AddChannel from '../../views/AddChannel';
 import DirectMessage from '../../views/DirectMessage';
 import Conversation from '../../views/Conversation';
+import MessageViewChoice from '../../views/MessagesViewChoice';
 
 export default function Routes({
   user, usersArray, messages, setMessages, setChosenUser, chosenUser, setConversationUsers, setChannels,
@@ -43,6 +44,17 @@ export default function Routes({
                               usersArray={usersArray}
                               setChannels={setChannels}
                             /> }
+           />
+          <Route
+           exact
+           path='/showChannelMessages/:firebaseKey'
+           component={() => <MessageViewChoice
+            className='messagesViewContainer'
+            messages={messages}
+            setMessages={setMessages}
+            user={user}
+            usersArray={usersArray}
+            />}
            />
       </Switch>
     </div>

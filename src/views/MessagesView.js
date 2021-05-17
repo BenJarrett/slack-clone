@@ -11,7 +11,8 @@ function MessagesView({
   userUID,
   text,
   timestamp,
-  messages
+  messages,
+  channelID
   // message
 }) {
   return (
@@ -28,6 +29,7 @@ function MessagesView({
          userUID={userUID}
          text={text}
          timestamp={timestamp}
+         channelID={channelID}
          />
        </div>
       </>
@@ -43,7 +45,8 @@ MessagesView.propTypes = {
   userUID: PropTypes.string,
   messageID: PropTypes.string,
   text: PropTypes.string,
-  timestamp: PropTypes.instanceOf(Date)
+  timestamp: PropTypes.instanceOf(Date),
+  channelID: PropTypes.string,
 };
 
 export default MessagesView;
