@@ -25,4 +25,10 @@ const createMessage = (msgObj) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export { getMessages, createMessage };
+const getSingleMessage = (messageID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/messages/${messageID}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export { getMessages, createMessage, getSingleMessage };

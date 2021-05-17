@@ -1,5 +1,6 @@
 import axios from 'axios';
 import firebaseConfig from '../apiKeys';
+// import { getSingleMessage } from './messagesData';
 // import { getSingleUser } from './usersData';
 
 const dbUrl = firebaseConfig.databaseURL;
@@ -36,15 +37,17 @@ const getSingleConversation = (ID) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// const getDMuserInfo = (senderID) => new Promise((resolve, reject) => {
-//   const userInfo = getSingleUser(senderID);
-//   const directMessageUser = getUserConversation(senderID);
-
-//   Promise.all([userInfo, directMessageUser])
-//     .then(([userInfoResp, directMessageUserResp]) => resolve({ userInfo: userInfoResp, directMessageUser: directMessageUserResp }))
-//     .catch((error) => reject(error));
-// });
+const getConversationMessages = (conversationUsersID) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/conversationMessages.json?orderBy="conversationUsersID"&equalTo="${conversationUsersID}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    }).catch((error) => reject(error));
+});
 
 export {
-  getConversations, createConversation, getSingleConversation
+  getConversations, createConversation, getSingleConversation, getConversationMessages
 };
