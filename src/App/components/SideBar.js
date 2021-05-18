@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import {
   Nav, NavbarToggler, NavItem, NavLink, Button
 } from 'reactstrap';
@@ -15,8 +16,6 @@ function SideBar({
   setChannels,
   conversationUsers,
   usersArray,
-  // setUsersArray
-
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -25,12 +24,19 @@ function SideBar({
       deleteChannelUsers(channelID);
       deleteChannel(channelID).then(setChannels);
     };
+
+    const history = useHistory();
+
+    const goToConversationView = (firebaseKey) => {
+      history.push(`direct-messages/${firebaseKey}`);
+    };
+
     return (
       <>
         {
           channels.map((channelInfo) => (
             <NavItem key={channelInfo.channelID}>
-              <NavLink >{channelInfo.isChannelPublic ? 'public' : 'Private'} channel<br></br>{channelInfo.channelName}
+              <NavLink onClick={() => goToConversationView(channelInfo.channelID)}>{channelInfo.isChannelPublic ? 'public' : 'Private'} channel<br></br>{channelInfo.channelName}
                <Button style={{
                  backgroundColor: 'transparent',
                  borderWidth: '0rem'
