@@ -38,6 +38,14 @@ export default function Routes({
           className='messagesViewContainer'
           />}
          />
+        <Route
+         exact path='/channel-messages/:firebaseKey'
+         component={() => <Conversation
+          setMessages={setMessages}
+          user={user}
+          className='messagesViewContainer'
+          />}
+         />
          <Route
            exact
            path='/add-Channel'
