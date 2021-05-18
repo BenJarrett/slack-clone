@@ -24,6 +24,7 @@ function Conversation({
       messages={convMessages}
       communicationID={firebaseKey}
       user={user}
+      setMessages={setMessages}
       />
       <MessagesForm
        setMessages={setMessages}
