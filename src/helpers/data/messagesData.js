@@ -30,5 +30,15 @@ const getSingleMessage = (messageID) => new Promise((resolve, reject) => {
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
+const deleteMessage = (messageID) => new Promise((resolve, reject) => {
+  axios.delete(`${dbURL}/messages/${messageID}.json`)
+    .then(() => getMessages().then((messageArray) => resolve(messageArray)))
+    .catch((error) => reject(error));
+});
 
-export { getMessages, createMessage, getSingleMessage };
+export {
+  getMessages,
+  createMessage,
+  deleteMessage,
+  getSingleMessage
+};
