@@ -25,7 +25,6 @@ const AddChannelForm = ({
   const arrayOfUsersForNewChannel1 = [];
   const usersArrayMinusCurrentUser = usersArray.filter((currUser) => currUser.uid !== user.uid);
 
-  // usersArryForMap
   const usersArryForMap = usersArrayMinusCurrentUser.map((item) => {
     const obj = { value: item.uid, label: item.fullName };
     return obj;

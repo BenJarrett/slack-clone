@@ -5,9 +5,6 @@ import MessageBubble from './MessageBubble';
 import MessagesForm from '../App/components/MessagesForm';
 import { getMessages } from '../helpers/data/messagesData';
 
-// import { Input } from 'reactstrap';
-// import { getConversationMessages } from '../helpers/data/directMessageData';
-
 function Conversation({
   setMessages, user, timestamp, text
 }) {

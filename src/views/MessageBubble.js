@@ -10,17 +10,8 @@ function MessageBubble({
   const [editMessage, setEditMessage] = useState(false);
 
   const handleClick = (type) => {
-    // switch (type) {
-    //   case 'edit':
-    //     setEditMessage((prevState) => !prevState);
-    //     break;
-    //   default:
-    //     console.warn('nothing selected');
-    // }
     if (type === 'edit') {
       setEditMessage((prevState) => !prevState);
-    } else {
-      console.warn('nothing selected');
     }
   };
 

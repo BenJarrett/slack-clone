@@ -14,7 +14,6 @@ const createChannelUsers = (channelUserObject) => new Promise((resolve, reject) 
 });
 
 const getChannelUsers = (channelID) => new Promise((resolve, reject) => {
-  console.warn(`${dbURL}/channelUsers.json?orderBy="channelID"&equalTo="${channelID}"`);
   axios.get(`${dbURL}/channelUsers.json?orderBy="channelID"&equalTo="${channelID}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
@@ -28,10 +27,5 @@ const deleteChannelUsers = (channelID) => new Promise((resolve, reject) => {
     });
   });
 });
-
-// const deleteChannelUsers = (channelID) => new Promise((resolve, reject) => {
-//   axios.delete(`${dbURL}/channelUsers.json?orderBy="channelID"&equalTo="${channelID}"`)
-//     .catch((error) => reject(error));
-// });
 
 export { createChannelUsers, deleteChannelUsers };
