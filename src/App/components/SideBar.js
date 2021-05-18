@@ -72,18 +72,20 @@ function SideBar({
           </div>
         }
         </NavItem>
+        <hr/>
+        <NavItem>
+          <Link className="home" to="/">Back to Messages</Link>
+        </NavItem>
+        <hr/>
         <NavItem>
           <Link className="nav-link" to="/add-Channel">Add Channels</Link>
         </NavItem>
         {user && getChannelLinks()}
-      </Nav>
-      <hr />
-      <div className ="usersSideNav"></div>
+      <hr/>
       <NavItem>
         <Link className="nav-link" to="/direct-messages">Add Direct Message</Link>
       </NavItem>
       <h4>Names of Users</h4>
-      <Nav vertical>
          {user && <ConvUsers
          usersArray={usersArray}
          user={user}

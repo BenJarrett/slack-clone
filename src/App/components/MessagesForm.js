@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input, Button, InputGroup, InputGroupAddon, Form,
 } from 'reactstrap';
-import { updateMessage } from '../../helpers/data/messagesData';
+import { createMessage, updateMessage } from '../../helpers/data/messagesData';
 
 const MessagesForm = ({
   setMessages,
-  // editMessage,
+  editMessage,
   user,
   messageID,
   text,
@@ -35,8 +35,6 @@ const MessagesForm = ({
     communicationID: communicationID || null
   });
 
-  // const [editMessage, setEditMessage] = useState(false);
-
   const handleInputChange = (e) => {
     setMessage((prevState) => ({
       ...prevState,
@@ -49,14 +47,13 @@ const MessagesForm = ({
       ...prevState,
       timestamp: GetCurrentDate()
     }));
-    // console.warn('you tried to create', message);
     if (message.messageID) {
       console.warn('you tried to edit', message);
-      updateMessage(message).then((resp) => setMessages(resp));
+      updateMessage(message).then((messagesArray) => setMessages(messagesArray));
     } else {
       console.warn('you tried to create', message);
-      // createMessage(message)
-      //   .then((messagesArray) => setMessages(messagesArray));
+      createMessage(message)
+        .then((messagesArray) => setMessages(messagesArray));
     }
     setMessage({
       messageID: null,
@@ -64,7 +61,6 @@ const MessagesForm = ({
       text: '',
       timestamp: '',
     });
-    // }
   };
 
   return (
@@ -75,18 +71,15 @@ const MessagesForm = ({
         <Input
           name="text"
           type="text"
-          // placeholder={editMessage ? 'Send a Message' : 'Edit your Message'}
           placeholder={'Send a Message'}
           value={message.text}
           onChange={handleInputChange}
           />
-          {/* {editMessage ? editMessage && message.text : message.text} */}
           <InputGroupAddon addonType="append">
             <Button color="success"
             onClick={handleSubmit}
             >
-              Send
-              {/* {editMessage ? 'Send' : 'Edit'} */}
+              {editMessage ? 'Edit' : 'Send'}
           </Button>
           </InputGroupAddon>
         </InputGroup>
@@ -104,7 +97,7 @@ MessagesForm.propTypes = {
   messageID: PropTypes.string,
   text: PropTypes.string,
   communicationID: PropTypes.string,
-  // editMessage: PropTypes.bool
+  editMessage: PropTypes.bool
 };
 
 export default MessagesForm;

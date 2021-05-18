@@ -16,7 +16,6 @@ function MessagesView({
   return (
     <>
     <div>
-      {/* {console.warn(messages)} */}
         <MessageBubble
           setMessages={setMessages}
           messages={messages}
@@ -44,7 +43,7 @@ MessagesView.propTypes = {
   userUID: PropTypes.string,
   messageID: PropTypes.string,
   text: PropTypes.string,
-  timestamp: PropTypes.instanceOf(Date)
+  timestamp: PropTypes.string
 };
 
 export default MessagesView;
