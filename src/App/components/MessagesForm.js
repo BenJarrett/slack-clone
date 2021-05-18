@@ -50,9 +50,10 @@ const MessagesForm = ({
     if (message.messageID) {
       updateMessage(message, message.messageID, message.communicationID).then(() => getMessages(message.communicationID).then((response) => setMessages(response)));
     } else {
-      createMessage(message)
-        .then((messagesArray) => setMessages(messagesArray));
+      createMessage(message, communicationID)
+        .then(() => getMessages(communicationID).then((response) => setMessages(response)));
     }
+
     setMessage({
       messageID: null,
       userUID: '',

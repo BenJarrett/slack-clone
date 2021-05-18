@@ -20,6 +20,7 @@ function MessagesView({
         <MessageBubble
           setMessages={setMessages}
           messages={messages}
+          user={user}
         />
           <MessagesForm
           className={'msgFormStyle'}

@@ -14,7 +14,7 @@ import { getUsers, getConversationUsers } from '../helpers/data/usersData';
 import { getChannels } from '../helpers/data/channelsData';
 import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
-import { getMessages } from '../helpers/data/messagesData';
+// import { getMessages } from '../helpers/data/messagesData';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,7 +40,7 @@ function App() {
         if (authed !== null) {
           getChannels().then((resp) => setChannels(resp));
           getUsers().then((resp) => setUsersArray(resp));
-          getMessages().then((resp) => setMessages(resp));
+          // getMessages('').then((resp) => setMessages(resp));
           getConversationUsers().then((resp) => {
             setConversationUsers(resp);
           });
