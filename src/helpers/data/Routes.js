@@ -7,7 +7,7 @@ import DirectMessage from '../../views/DirectMessage';
 import Conversation from '../../views/Conversation';
 
 export default function Routes({
-  user, usersArray, messages, setMessages, setChosenUser, chosenUser, setConversationUsers, setChannels,
+  user, usersArray, messages, setMessages, setChosenUser, chosenUser, setConversationUsers, setChannels
 }) {
   return (
     <div>

@@ -4,50 +4,32 @@ import { Button } from 'reactstrap';
 import MessagesForm from '../App/components/MessagesForm';
 // import { rightArrow, rightArrowOverlap } from '../styles/index.scss';
 
-function MessageBubble({ messages, text }) {
-  // const rightArrow = ({
-  //   rightArrow: {
-  //     position: 'absolute',
-  //     backgroundColor: '#0078fe',
-  //     // backgroundColor:'red',
-  //     width: 20,
-  //     height: 25,
-  //     bottom: 0,
-  //     borderBottomLeftRadius: 25,
-  //     right: -10
-  //   },
-  // });
-
-  // const rightArrowOverlap = ({
-  //   rightArrowOverlap: {
-  //     position: 'absolute',
-  //     backgroundColor: '#eeeeee',
-  //     // backgroundColor:'green',
-  //     width: 20,
-  //     height: 35,
-  //     bottom: -6,
-  //     borderBottomLeftRadius: 18,
-  //     right: -20
-  //   },
-  // });
-
+function MessageBubble({
+  messages, setMessages
+}) {
   const [editMessage, setEditMessage] = useState(false);
 
-  const handleClick = () => {
-    // if ('edit') {
-    //   setEditMessage((prevState) => !prevState);
-    // } else {
-    //   console.warn('nothing selected');
+  const handleClick = (type) => {
+    // switch (type) {
+    //   case 'edit':
+    //     setEditMessage((prevState) => !prevState);
+    //     break;
+    //   default:
+    //     console.warn('nothing selected');
     // }
-    setEditMessage((prevState) => !prevState);
+    if (type === 'edit') {
+      setEditMessage((prevState) => !prevState);
+    } else {
+      console.warn('nothing selected');
+    }
 
     // (setEditMessage((prevState) => console.warn(!prevState)));
   };
 
   return (
     <>
-      {messages.map((msgObj) => (
-        <div key={msgObj.messageID} style={{
+      {messages.map((msgObj, i) => (
+        <div key={i} style={{
           backgroundColor: '#0078fe',
           padding: 10,
           marginLeft: '45%',
@@ -58,16 +40,18 @@ function MessageBubble({ messages, text }) {
           // alignSelf: 'flex-end',
           // borderRadius: 20,
         }}>
-          <div>
             <div style={{ fontSize: 16, color: '#fff' }} >{msgObj.text}</div>
             <div style={{ fontSize: 12, color: '#fff' }} >{msgObj.timestamp}</div>
-          <Button color='danger'onClick={() => handleClick()}>
+          <Button color='danger'onClick={() => handleClick('edit')}>
             {editMessage ? 'close' : 'edit'}
           </Button>
-          {editMessage && <MessagesForm
-            value={text}
+          {
+          editMessage && <MessagesForm
+            setMessages={setMessages}
+            messageID={msgObj.messageID}
+            // user={user}
+            text={msgObj.text}
           />}
-            </div>
         </div>
       ))}
     </>
@@ -75,9 +59,8 @@ function MessageBubble({ messages, text }) {
 }
 
 MessageBubble.propTypes = {
-  text: PropTypes.string,
+  setMessages: PropTypes.func,
   messages: PropTypes.array,
-  // message: PropTypes.object
   editMessage: PropTypes.bool
 };
 
