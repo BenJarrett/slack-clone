@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input, Button, InputGroup, InputGroupAddon, Form,
 } from 'reactstrap';
-import { createMessage, getMessages } from '../../helpers/data/messagesData';
+import { createMessage, getMessages, updateMessage } from '../../helpers/data/messagesData';
 
 const MessagesForm = ({
   setMessages,
+  editMessage,
   user,
   messageID,
   text,
@@ -27,7 +28,7 @@ const MessagesForm = ({
   };
 
   const [message, setMessage] = useState({
-    messageID: messageID || '',
+    messageID: messageID || null,
     userUID: user ? user.uid : '',
     text: text || '',
     timestamp: GetCurrentDate(),
@@ -46,9 +47,12 @@ const MessagesForm = ({
       ...prevState,
       timestamp: GetCurrentDate()
     }));
-    createMessage(message, communicationID)
-      .then(() => getMessages(communicationID).then((response) => setMessages(response)));
-    // .then((messagesArray) => setMessages(messagesArray));
+    if (message.messageID) {
+      updateMessage(message, message.messageID, message.communicationID).then(() => getMessages(message.communicationID).then((response) => setMessages(response)));
+    } else {
+      createMessage(message, communicationID)
+        .then(() => getMessages(communicationID).then((response) => setMessages(response)));
+    }
 
     setMessage({
       messageID: null,
@@ -57,6 +61,7 @@ const MessagesForm = ({
       timestamp: '',
     });
   };
+
   return (
   <div>
     <Form id='message-form'>
@@ -65,14 +70,15 @@ const MessagesForm = ({
         <Input
           name="text"
           type="text"
-          placeholder="Send a Message"
+          placeholder={'Send a Message'}
           value={message.text}
           onChange={handleInputChange}
           />
           <InputGroupAddon addonType="append">
             <Button color="success"
             onClick={handleSubmit}
-            >Send
+            >
+              {editMessage ? 'Edit' : 'Send'}
           </Button>
           </InputGroupAddon>
         </InputGroup>
@@ -86,10 +92,10 @@ MessagesForm.propTypes = {
   message: PropTypes.object,
   setMessages: PropTypes.func,
   user: PropTypes.any,
-  userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
-  communicationID: PropTypes.string
+  communicationID: PropTypes.string,
+  editMessage: PropTypes.bool
 };
 
 export default MessagesForm;

@@ -25,6 +25,12 @@ const createMessage = (msgObj, communicationID) => new Promise((resolve, reject)
     }).catch((error) => reject(error));
 });
 
+const updateMessage = (msgObj, messageID, communicationID) => new Promise((resolve, reject) => {
+  axios.patch(`${dbURL}/messages/${messageID}.json`, msgObj)
+    .then(() => getMessages(communicationID).then(resolve))
+    .catch((error) => reject(error));
+});
+
 const getSingleMessage = (messageID) => new Promise((resolve, reject) => {
   axios.get(`${dbURL}/messages/${messageID}.json`)
     .then((response) => resolve(response.data))
@@ -38,6 +44,7 @@ const deleteMessage = (messageID, communicationID) => new Promise((resolve, reje
 
 export {
   getMessages,
+  updateMessage,
   createMessage,
   deleteMessage,
   getSingleMessage

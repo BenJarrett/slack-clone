@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import {
   Col,
-  Container,
   Row
 }
   from 'reactstrap';
@@ -14,7 +13,6 @@ import { getUsers, getConversationUsers } from '../helpers/data/usersData';
 import { getChannels } from '../helpers/data/channelsData';
 import Routes from '../helpers/data/Routes';
 import NavBar from './components/NavBar';
-// import { getMessages } from '../helpers/data/messagesData';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -40,7 +38,6 @@ function App() {
         if (authed !== null) {
           getChannels().then((resp) => setChannels(resp));
           getUsers().then((resp) => setUsersArray(resp));
-          // getMessages('').then((resp) => setMessages(resp));
           getConversationUsers().then((resp) => {
             setConversationUsers(resp);
           });
@@ -53,11 +50,15 @@ function App() {
 
   return (
     <>
-      <Container fluid='true' className='App'>
+      <NavBar/>
+      {/* <Container fluid='true' className='App'> */}
        <Router>
-         <NavBar/>
-           <Row noGutters>
-             <Col xs='3'>
+           <Row
+           noGutters
+           >
+             <Col
+             xs='3'
+             >
                <SideBar
                   user={user}
                   channels={channels}
@@ -69,7 +70,8 @@ function App() {
                   setChannels={setChannels}
                    />
              </Col>
-             <Col xs='6'>
+             <Col
+             >
                <Routes
                   user={user}
                   usersArray={usersArray}
@@ -82,10 +84,10 @@ function App() {
                   setChannels={setChannels}
                 />
              </Col>
-             <Col xs='1'></Col>
+             {/* <Col xs='1'></Col> */}
            </Row>
         </Router>
-      </Container>
+      {/* </Container> */}
     </>
   );
 }

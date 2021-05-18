@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { View, Text } from 'reactstrap';
-import MessagesForm from '../App/components/MessagesForm';
 import MessageBubble from './MessageBubble';
+import MessagesForm from '../App/components/MessagesForm';
+import '../App/App.scss';
 
 function MessagesView({
   user,
@@ -11,23 +11,25 @@ function MessagesView({
   userUID,
   text,
   timestamp,
-  messages
+  messages,
 }) {
   return (
     <>
     <div>
         <MessageBubble
+          setMessages={setMessages}
           messages={messages}
           user={user}
         />
           <MessagesForm
-         className={'msgFormStyle'}
-         setMessages={setMessages}
-         user={user}
-         usersArray={usersArray}
-         userUID={userUID}
-         text={text}
-         timestamp={timestamp}
+          className={'msgFormStyle'}
+          messages={messages}
+          setMessages={setMessages}
+          user={user}
+          usersArray={usersArray}
+          userUID={userUID}
+          text={text}
+          timestamp={timestamp}
          />
        </div>
       </>
@@ -36,14 +38,13 @@ function MessagesView({
 
 MessagesView.propTypes = {
   messages: PropTypes.array,
-  // message: PropTypes.object,
   user: PropTypes.any,
   usersArray: PropTypes.array,
   setMessages: PropTypes.func,
   userUID: PropTypes.string,
   messageID: PropTypes.string,
   text: PropTypes.string,
-  timestamp: PropTypes.instanceOf(Date)
+  timestamp: PropTypes.string
 };
 
 export default MessagesView;
