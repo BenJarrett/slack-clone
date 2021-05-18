@@ -11,6 +11,7 @@ const MessagesForm = ({
   user,
   messageID,
   text,
+  communicationID
 }) => {
   const GetCurrentDate = () => {
     const getDateNow = new Date();
@@ -30,7 +31,8 @@ const MessagesForm = ({
     messageID: messageID || null,
     userUID: user ? user.uid : '',
     text: text || '',
-    timestamp: GetCurrentDate()
+    timestamp: GetCurrentDate(),
+    communicationID: communicationID || null
   });
 
   // const [editMessage, setEditMessage] = useState(false);
@@ -101,8 +103,8 @@ MessagesForm.propTypes = {
   userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
+  communicationID: PropTypes.string,
   // editMessage: PropTypes.bool
-
 };
 
 export default MessagesForm;
