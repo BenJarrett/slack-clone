@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import MessageBubble from './MessageBubble';
 import MessagesForm from '../App/components/MessagesForm';
 import { getMessages } from '../helpers/data/messagesData';
 
 // import { Input } from 'reactstrap';
 // import { getConversationMessages } from '../helpers/data/directMessageData';
-import MessageBubble from './MessageBubble';
 
 function Conversation({
   setMessages, user, timestamp, text
@@ -22,6 +22,8 @@ function Conversation({
     <div>
       <MessageBubble
       messages={convMessages}
+      communicationID={firebaseKey}
+      user={user}
       />
       <MessagesForm
        setMessages={setMessages}

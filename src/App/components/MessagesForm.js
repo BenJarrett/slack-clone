@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input, Button, InputGroup, InputGroupAddon, Form,
 } from 'reactstrap';
-import { createMessage } from '../../helpers/data/messagesData';
+import { createMessage, getMessages } from '../../helpers/data/messagesData';
 
 const MessagesForm = ({
   setMessages,
@@ -46,8 +46,9 @@ const MessagesForm = ({
       ...prevState,
       timestamp: GetCurrentDate()
     }));
-    createMessage(message)
-      .then((messagesArray) => setMessages(messagesArray));
+    createMessage(message, communicationID)
+      .then(() => getMessages(communicationID).then((response) => setMessages(response)));
+    // .then((messagesArray) => setMessages(messagesArray));
 
     setMessage({
       messageID: null,

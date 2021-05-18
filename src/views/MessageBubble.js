@@ -4,7 +4,10 @@ import { Button } from 'reactstrap';
 import { deleteMessage } from '../helpers/data/messagesData';
 // import { rightArrow, rightArrowOverlap } from '../styles/index.scss';
 
-function MessageBubble({ messages, user }) {
+function MessageBubble({
+  messages, user, setMessages, communicationID
+}) {
+  console.warn(user, 'user');
   // const rightArrow = ({
   //   rightArrow: {
   //     position: 'absolute',
@@ -32,7 +35,7 @@ function MessageBubble({ messages, user }) {
   // });
 
   const handleDeleteMessageButton = (messageID) => {
-    deleteMessage(messageID).then(messages);
+    deleteMessage(messageID, communicationID).then(setMessages);
   };
 
   return (
@@ -82,7 +85,9 @@ function MessageBubble({ messages, user }) {
 
 MessageBubble.propTypes = {
   messages: PropTypes.array,
-  user: PropTypes.any
+  user: PropTypes.any,
+  setMessages: PropTypes.func,
+  communicationID: PropTypes.string
 };
 
 export default MessageBubble;
