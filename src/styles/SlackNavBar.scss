@@ -9,10 +9,6 @@
 .navbar {
   min-height: 1.5em;
   background-color: #282c34;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -26,27 +22,8 @@
   text-align: center;
   height: 100%;
   position: fixed;
-  width: 250px;
+  width:fit-content;
   overflow-x: hidden;
   overflow-y: scroll;
-  // justify-content: center;
-  // top: 0;
-  // bottom: 0;
-  // overflow-y: auto;
-  // position:inherit;
-  // overflow-y: scroll;
-  // top: 0;
-  // bottom: 0;
-
 
 }
-
-// .usersSideNav {
-//   color: white;
-  // background-color: rgb(65, 64, 64);
-  // width: 250px;
-  // height: 10vh;
-  // display: flex;
-  // justify-content: center;
-  // overflow-y: scroll;
-// }

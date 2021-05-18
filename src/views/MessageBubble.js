@@ -38,7 +38,6 @@ function MessageBubble({
           marginRight: '5%',
           maxWidth: '50%',
           alignSelf: 'flex-end',
-          // borderRadius: 20,
         }}>
             <div style={{ fontSize: 16, color: '#fff' }} >{msgObj.text}</div>
             <div style={{ fontSize: 12, color: '#fff' }} >{msgObj.timestamp}</div>
