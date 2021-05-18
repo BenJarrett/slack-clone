@@ -22,6 +22,9 @@ function Conversation({
     <div>
       <MessageBubble
       messages={convMessages}
+      setMessages={setMessages}
+      user={user}
+      communicationID={firebaseKey}
       />
       <MessagesForm
        setMessages={setMessages}

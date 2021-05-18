@@ -5,7 +5,7 @@ import MessagesForm from '../App/components/MessagesForm';
 // import { rightArrow, rightArrowOverlap } from '../styles/index.scss';
 
 function MessageBubble({
-  messages, setMessages
+  messages, setMessages, user, communicationID
 }) {
   const [editMessage, setEditMessage] = useState(false);
 
@@ -44,8 +44,9 @@ function MessageBubble({
           editMessage && <MessagesForm
             setMessages={setMessages}
             messageID={msgObj.messageID}
-            // user={user}
+            user={user}
             text={msgObj.text}
+            communicationID={communicationID}
           />}
           <Button
             color='transparent'
@@ -63,8 +64,10 @@ function MessageBubble({
 
 MessageBubble.propTypes = {
   setMessages: PropTypes.func,
+  user: PropTypes.any,
   messages: PropTypes.array,
-  editMessage: PropTypes.bool
+  editMessage: PropTypes.bool,
+  communicationID: PropTypes.string
 };
 
 export default MessageBubble;

@@ -7,6 +7,7 @@ function Home({
 }) {
   return (
     <div>
+        <h1>Welcome to Slack-Clone</h1>
      {<MessagesView
         messages={messages}
         message={message}

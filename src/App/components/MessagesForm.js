@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input, Button, InputGroup, InputGroupAddon, Form,
 } from 'reactstrap';
-import { createMessage, updateMessage } from '../../helpers/data/messagesData';
+import { createMessage, getMessages, updateMessage } from '../../helpers/data/messagesData';
 
 const MessagesForm = ({
   setMessages,
@@ -49,7 +49,7 @@ const MessagesForm = ({
     }));
     if (message.messageID) {
       console.warn('you tried to edit', message);
-      updateMessage(message).then((messagesArray) => setMessages(messagesArray));
+      updateMessage(message, message.messageID, message.communicationID).then(() => getMessages(message.communicationID).then((response) => setMessages(response)));
     } else {
       console.warn('you tried to create', message);
       createMessage(message)
@@ -93,7 +93,6 @@ MessagesForm.propTypes = {
   message: PropTypes.object,
   setMessages: PropTypes.func,
   user: PropTypes.any,
-  userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
   communicationID: PropTypes.string,

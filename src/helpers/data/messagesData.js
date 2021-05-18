@@ -25,9 +25,9 @@ const createMessage = (msgObj) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const updateMessage = (msgObj, messageID) => new Promise((resolve, reject) => {
+const updateMessage = (msgObj, messageID, communicationID) => new Promise((resolve, reject) => {
   axios.patch(`${dbURL}/messages/${messageID}.json`, msgObj)
-    .then(() => getMessages().then(resolve))
+    .then(() => getMessages(communicationID).then(resolve))
     .catch((error) => reject(error));
 });
 

@@ -74,7 +74,7 @@ function SideBar({
         </NavItem>
         <hr/>
         <NavItem>
-          <Link className="home" to="/">Back to Messages</Link>
+          <Link className="home" to="/">HOME</Link>
         </NavItem>
         <hr/>
         <NavItem>
