@@ -74,7 +74,7 @@ function App() {
                    />
              </Col>
              <Col
-              className={'messagesViewContainer'}
+              // className={'messagesViewContainer'}
              >
                <Routes
                   user={user}
