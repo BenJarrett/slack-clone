@@ -10,6 +10,7 @@ const MessagesForm = ({
   user,
   messageID,
   text,
+  communicationID
 }) => {
   const GetCurrentDate = () => {
     const getDateNow = new Date();
@@ -29,7 +30,8 @@ const MessagesForm = ({
     messageID: messageID || '',
     userUID: user ? user.uid : '',
     text: text || '',
-    timestamp: GetCurrentDate()
+    timestamp: GetCurrentDate(),
+    communicationID: communicationID || null
   });
 
   const handleInputChange = (e) => {
@@ -86,6 +88,7 @@ MessagesForm.propTypes = {
   userUID: PropTypes.any,
   messageID: PropTypes.string,
   text: PropTypes.string,
+  communicationID: PropTypes.string
 };
 
 export default MessagesForm;

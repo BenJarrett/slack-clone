@@ -1,30 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import { Input } from 'reactstrap';
-import { getConversationMessages } from '../helpers/data/directMessageData';
-// import MessageBubble from './MessageBubble';
+import PropTypes from 'prop-types';
+import MessagesForm from '../App/components/MessagesForm';
+import { getMessages } from '../helpers/data/messagesData';
 
-function Conversation() {
+// import { Input } from 'reactstrap';
+// import { getConversationMessages } from '../helpers/data/directMessageData';
+import MessageBubble from './MessageBubble';
+
+function Conversation({
+  setMessages, user, timestamp, text
+}) {
   const [convMessages, setConvMessages] = useState([]);
   const { firebaseKey } = useParams();
 
   useEffect(() => {
-    console.warn('convID', firebaseKey);
-    getConversationMessages(firebaseKey).then((response) => {
-      console.warn('getConversationMessages', response);
-      setConvMessages(response.singleMessage);
-    });
+    getMessages(firebaseKey).then((response) => setConvMessages(response));
   }, []);
 
   return (
     <div>
       <h1>Conversation view</h1>
-      {/* <MessageBubble
-      messages={convMessages} */}
-      {/* /> */}
-      {console.warn(convMessages)}
+      <MessageBubble
+      messages={convMessages}
+      />
+      <MessagesForm
+       setMessages={setMessages}
+       user={user}
+       text={text}
+       communicationID={firebaseKey}
+       timestamp={timestamp}
+       />
     </div>
   );
 }
+
+Conversation.propTypes = {
+  timestamp: PropTypes.string,
+  text: PropTypes.string,
+  user: PropTypes.any,
+  setMessages: PropTypes.func
+};
 
 export default Conversation;
