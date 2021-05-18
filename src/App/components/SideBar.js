@@ -17,6 +17,7 @@ function SideBar({
   conversationUsers,
   usersArray,
 }) {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const getChannelLinks = () => {
@@ -25,10 +26,8 @@ function SideBar({
       deleteChannel(channelID).then(setChannels);
     };
 
-    const history = useHistory();
-
     const goToConversationView = (firebaseKey) => {
-      history.push(`direct-messages/${firebaseKey}`);
+      history.push(`channel-messages/${firebaseKey}`);
     };
 
     return (
