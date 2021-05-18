@@ -12,7 +12,6 @@ function MessagesView({
   text,
   timestamp,
   messages
-  // message
 }) {
   return (
     <>

@@ -40,7 +40,7 @@ function App() {
         if (authed !== null) {
           getChannels().then((resp) => setChannels(resp));
           getUsers().then((resp) => setUsersArray(resp));
-          getMessages().then((resp) => console.warn(setMessages(resp)));
+          getMessages().then((resp) => setMessages(resp));
           getConversationUsers().then((resp) => {
             setConversationUsers(resp);
           });

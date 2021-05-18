@@ -3,8 +3,8 @@ import firebaseConfig from '../apiKeys';
 
 const dbURL = firebaseConfig.databaseURL;
 
-const getMessages = () => new Promise((resolve, reject) => {
-  axios.get(`${dbURL}/messages.json`)
+const getMessages = (communicationID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/messages.json?orderBy="communicationID"&equalTo="${communicationID}"`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -25,4 +25,10 @@ const createMessage = (msgObj) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export { getMessages, createMessage };
+const getSingleMessage = (messageID) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/messages/${messageID}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export { getMessages, createMessage, getSingleMessage };

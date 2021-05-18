@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Form, Input, FormGroup, Button
 } from 'reactstrap';
+// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import PropTypes from 'prop-types';
 import { createConversation } from '../../helpers/data/directMessageData';
 import { getConversationUsers } from '../../helpers/data/usersData';
@@ -25,7 +26,9 @@ const DirectMessageForm = ({
       senderUID: user.uid,
       receiverUID: chosenUser.uid
     };
-    createConversation(obj).then(() => getConversationUsers().then((response) => setConversationUsers(response)));
+    createConversation(obj).then(() => {
+      getConversationUsers().then((response) => setConversationUsers(response));
+    });
   };
 
   return (

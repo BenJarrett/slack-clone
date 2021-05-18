@@ -33,7 +33,11 @@ export default function Routes({
          />
          <Route
          exact path='/direct-messages/:firebaseKey'
-         component={() => <Conversation/>}
+         component={() => <Conversation
+          setMessages={setMessages}
+          user={user}
+          className='messagesViewContainer'
+          />}
          />
          <Route
            exact
@@ -58,5 +62,7 @@ Routes.propTypes = {
   chosenUser: PropTypes.object,
   setChosenUser: PropTypes.func,
   setConversationUsers: PropTypes.func,
-  setChannels: PropTypes.func.isRequired
+  setChannels: PropTypes.func.isRequired,
+  timestamp: PropTypes.string,
+  text: PropTypes.string
 };
