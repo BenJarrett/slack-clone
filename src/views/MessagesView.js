@@ -19,6 +19,7 @@ function MessagesView({
     <div>
         <MessageBubble
           messages={messages}
+          user={user}
         />
           <MessagesForm
          className={'msgFormStyle'}
