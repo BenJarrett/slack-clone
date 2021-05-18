@@ -1,17 +1,29 @@
 .App {
 text-align: center;
+display: flex;
+flex: wrap;
 }
 
-.msgFormStyle {
+.message-form {
   position: 'absolute';
-  bottom: 0;
-  flex: 1;
-  justify-content: 'flex-end';
-  margin-bottom: '36';
+    bottom: 0;
+  //   flex: 1;
+  //   justify-content: 'flex-end';
+  //   margin-bottom: '36';
 }
+
+// .msgFormStyle {
+//   position: 'absolute';
+//   bottom: 0;
+//   flex: 1;
+//   justify-content: 'flex-end';
+//   margin-bottom: '36';
+// }
 
 .messagesViewContainer {
+  flex-wrap: wrap;
   width: 100%;
+  
 }
 
 

@@ -53,10 +53,12 @@ function App() {
 
   return (
     <>
+      <NavBar/>
       <Container fluid='true' className='App'>
        <Router>
-         <NavBar/>
-           <Row noGutters>
+           <Row
+            className='messagesViewContainer' noGutters
+            >
              <Col xs='3'>
                <SideBar
                   user={user}

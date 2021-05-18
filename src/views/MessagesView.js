@@ -21,7 +21,7 @@ function MessagesView({
           messages={messages}
         />
           <MessagesForm
-          className={'msgFormStyle'}
+          // className={'msgFormStyle'}
           messages={messages}
           setMessages={setMessages}
           user={user}

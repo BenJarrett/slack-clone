@@ -48,10 +48,8 @@ const MessagesForm = ({
       timestamp: GetCurrentDate()
     }));
     if (message.messageID) {
-      console.warn('you tried to edit', message);
       updateMessage(message, message.messageID, message.communicationID).then(() => getMessages(message.communicationID).then((response) => setMessages(response)));
     } else {
-      console.warn('you tried to create', message);
       createMessage(message)
         .then((messagesArray) => setMessages(messagesArray));
     }
