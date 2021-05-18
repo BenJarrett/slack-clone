@@ -2,28 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // import { Input } from 'reactstrap';
 import { getConversationMessages } from '../helpers/data/directMessageData';
-import MessageBubble from './MessageBubble';
+// import MessageBubble from './MessageBubble';
 
 function Conversation() {
   const [convMessages, setConvMessages] = useState([]);
-  const conversationUsersID = useParams();
+  const { firebaseKey } = useParams();
 
   useEffect(() => {
-    console.warn('convID', conversationUsersID);
-    getConversationMessages(conversationUsersID.firebaseKey).then((response) => {
+    console.warn('convID', firebaseKey);
+    getConversationMessages(firebaseKey).then((response) => {
       console.warn('getConversationMessages', response);
       setConvMessages(response.singleMessage);
     });
   }, []);
 
-  console.warn('messages', convMessages);
-
   return (
     <div>
       <h1>Conversation view</h1>
-      <MessageBubble
-      messages={convMessages}
-      />
+      {/* <MessageBubble
+      messages={convMessages} */}
+      {/* /> */}
+      {console.warn(convMessages)}
     </div>
   );
 }
