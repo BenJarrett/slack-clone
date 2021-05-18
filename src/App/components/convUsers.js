@@ -39,7 +39,7 @@ function ConvUsers({ usersArray, conversationUsers, user }) {
           {
             filteredConvserstionUsersAll !== []
               ? filteredConvserstionUsersAll.map((item) => (
-              <NavItem key={item.uid}>
+              <NavItem key={item.conversationID}>
                 <NavLink onClick={() => (goToConversationView(item.conversationID))}>
                 {item.fullName}
               </NavLink>
