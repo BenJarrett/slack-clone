@@ -20,7 +20,6 @@ function Conversation({
 
   return (
     <div>
-      <h1>Conversation view</h1>
       <MessageBubble
       messages={convMessages}
       />
