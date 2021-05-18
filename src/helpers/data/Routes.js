@@ -15,6 +15,8 @@ export default function Routes({
          <Route
            exact path='/'
            component={() => <Home
+    className={'messagesViewContainer'}
+
             messages={messages}
             setMessages={setMessages}
             user={user}

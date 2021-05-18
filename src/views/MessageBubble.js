@@ -25,7 +25,9 @@ function MessageBubble({
   };
 
   return (
-    <>
+    <div
+    className={'messagesViewContainer'}
+    >
       {messages.map((msgObj, i) => (
         <div key={i} style={{
           backgroundColor: '#0078fe',
@@ -58,7 +60,7 @@ function MessageBubble({
           </Button>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import { View, Text } from 'reactstrap';
 import MessageBubble from './MessageBubble';
 import MessagesForm from '../App/components/MessagesForm';
+import '../App/App.scss';
 
 function MessagesView({
   user,

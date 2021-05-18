@@ -9,6 +9,8 @@ function Home({
     <div>
         <h1>Welcome to Slack-Clone</h1>
      {<MessagesView
+    className={'messagesViewContainer'}
+
         messages={messages}
         message={message}
         setMessages={setMessages}

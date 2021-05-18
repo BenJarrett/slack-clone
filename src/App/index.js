@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import {
   Col,
-  Container,
+  // Container,
   Row
 }
   from 'reactstrap';
@@ -54,12 +54,14 @@ function App() {
   return (
     <>
       <NavBar/>
-      <Container fluid='true' className='App'>
+      {/* <Container fluid='true' className='App'> */}
        <Router>
            <Row
-            className='messagesViewContainer' noGutters
-            >
-             <Col xs='3'>
+           noGutters
+           >
+             <Col
+             xs='3'
+             >
                <SideBar
                   user={user}
                   channels={channels}
@@ -71,7 +73,9 @@ function App() {
                   setChannels={setChannels}
                    />
              </Col>
-             <Col xs='6'>
+             <Col
+              className={'messagesViewContainer'}
+             >
                <Routes
                   user={user}
                   usersArray={usersArray}
@@ -84,10 +88,10 @@ function App() {
                   setChannels={setChannels}
                 />
              </Col>
-             <Col xs='1'></Col>
+             {/* <Col xs='1'></Col> */}
            </Row>
         </Router>
-      </Container>
+      {/* </Container> */}
     </>
   );
 }

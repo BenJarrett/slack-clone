@@ -23,21 +23,23 @@
 
 .channelsSideNav {
   background-color: rgb(65, 64, 64);
-  width: 250px;
-  height: 100vh;
-  position: sticky;
+  // width: 250px;
+  // height: 100vh;
+  // justify-content: center;
+  text-align: center;
+  position: relative;
   top: 0;
   bottom: 0;
   overflow-y: auto;
 
 }
 
-.usersSideNav {
-  color: white;
-  background-color: rgb(65, 64, 64);
-  width: 250px;
+// .usersSideNav {
+//   color: white;
+  // background-color: rgb(65, 64, 64);
+  // width: 250px;
   // height: 10vh;
   // display: flex;
-  justify-content: center;
+  // justify-content: center;
   // overflow-y: scroll;
-}
+// }
