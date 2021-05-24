@@ -1,7 +1,13 @@
 # Chatty App: A Slack Clone
 
 ## Overview 
-This app allows users to chat with each other by creating channels and direct messages. The user can delete or update their own messages. 
+This app allows users to chat with each other by creating channels and direct messages. The user can delete or update their own messages.
+
+## Deployed Site
+[View Chatty on Netlify](https://react-slack-clone-e14.netlify.app/)
+
+
+
 
 ## User
 Just like any messaging app, this app can be used to communicate to colleagues, or between friends or family. 
@@ -11,6 +17,9 @@ Just like any messaging app, this app can be used to communicate to colleagues, 
 - Ability to add channels or DMs 
 - Ability to wrote messages inside a channel or DM 
 - Ability to delete or update user's own messages
+
+## Loom video
+[View a Walkthrough of Chatty](https://www.loom.com/share/a24b8804c89a40bfbb662f3e0577ae96)
 
 ## Screenshots 
 ![slack](https://user-images.githubusercontent.com/76187279/119031880-31a0d900-b971-11eb-88be-2bcf894eb14c.png)
